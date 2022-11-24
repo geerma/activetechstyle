@@ -1,0 +1,23 @@
+.footerinfo_container > ul {
+  padding-left: 1rem;
+}
+
+.footerinfo_container > ul > li {
+  list-style: none;
+}
+
+.footerinfo_container > ul > li > span {
+  color: #818080;
+  font-size: 10px;
+}
+
+.footerinfo_container {
+  margin-left: 0.2rem;
+}
+
+.copyright_container {
+  color: #aaa6a6;
+  font-size: 12px;
+  padding-left: 1rem;
+  margin-left: 0.2rem;
+}
