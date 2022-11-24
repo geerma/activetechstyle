@@ -4,10 +4,10 @@ import "./stylepage.css";
 
 const Stylepage = () => {
   return (
-    <div className="App">
+    <div className="style_container">
       <Header />
       <h1>Style</h1>
-      <div className="card">
+      <div className="product_container">
         <p>Paragraph</p>
       </div>
     </div>

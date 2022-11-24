@@ -4,10 +4,10 @@ import "./activepage.css";
 
 const Activepage = () => {
   return (
-    <div className="App">
+    <div className="active_container">
       <Header />
       <h1>Active</h1>
-      <div className="card">
+      <div className="product_container">
         <p>Paragraph</p>
       </div>
     </div>

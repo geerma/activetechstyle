@@ -4,10 +4,10 @@ import "./techpage.css";
 
 const Techpage = () => {
   return (
-    <div className="App">
+    <div className="tech_container">
       <Header />
       <h1>Tech</h1>
-      <div className="card">
+      <div className="product_container">
         <p>Paragraph</p>
       </div>
     </div>

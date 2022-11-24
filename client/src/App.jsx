@@ -4,6 +4,7 @@ import Homepage from "./Pages/Homepage/Homepage";
 import Stylepage from "./Pages/Stylepage/Stylepage";
 import Activepage from "./Pages/Activepage/Activepage";
 import Techpage from "./Pages/Techpage/Techpage";
+import Loginpage from "./Pages/Loginpage/Loginpage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path="/active" element={<Activepage />}></Route>
       <Route path="/tech" element={<Techpage />}></Route>
       <Route path="/style" element={<Stylepage />}></Route>
+      <Route path="/login" element={<Loginpage />}></Route>
     </Routes>
   );
 }
