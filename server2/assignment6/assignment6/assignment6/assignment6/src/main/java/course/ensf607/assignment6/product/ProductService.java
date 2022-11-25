@@ -8,8 +8,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import course.ensf607.assignment6.billing.Billing;
-
 @Service
 public class ProductService {
 
@@ -46,14 +44,16 @@ public class ProductService {
 		product.setStockQuantity(currentQuantity - n);
 	}
 	
-   
-   public List<Product> getAllProducts() {
-		return productRepository.findAll();
-	}
+    public void addNewProduct(Product product) {
+        Optional<Product> productById = productRepository.findProductById(product.getId());
+        if (productById.isPresent()) {
+            throw new IllegalStateException("Product already exist!");
+        }
+        productRepository.save(product);
+    }
 	
-	
-	
-	
-   
+	public List<Product> getAllProducts() {
+        return productRepository.findAll();
+    }
 
 }

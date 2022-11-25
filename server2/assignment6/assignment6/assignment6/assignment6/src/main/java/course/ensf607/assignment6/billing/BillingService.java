@@ -9,6 +9,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import course.ensf607.assignment6.customer.Customer;
+
 @Service
 public class BillingService {
 
@@ -36,10 +38,13 @@ public class BillingService {
         }
         return billingById.get();
     }
-    
 
+	public List<Billing> getAllBillings() {
+        return billingRepository.findAll();
+    }
+    
     @Transactional
-	public void updateBilling(Long id, Long cardNumber, Date expiryDate, Integer cvcNumber) {
+	public void updateBilling(Long id, Customer customer, Long cardNumber, Date expiryDate, Integer cvcNumber) {
 		Optional<Billing> billingOptional = billingRepository.findBillingById(id);
     	if (billingOptional.isEmpty()) {
     		throw new IllegalStateException("Billing does not exist!");
@@ -60,11 +65,6 @@ public class BillingService {
 		billing.setCvcNumber(cvcNumber);
 		
     	
-	}
-
-
-	public List<Billing> getAllBillings() {
-		return billingRepository.findAll();
 	}
 
 

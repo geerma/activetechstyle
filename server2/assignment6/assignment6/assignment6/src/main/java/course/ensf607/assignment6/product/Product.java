@@ -37,12 +37,10 @@ public class Product implements Serializable {
     private Integer stockQuantity;
 
     private String stockLocation;
-    
-    private String description;
 
     
     public Product(String name, String category, Double rating, BigDecimal price, String image, 
-    		Integer stockQuantity, String stockLocation, String description) {
+    		Integer stockQuantity, String stockLocation) {
         this.name = name;
         this.category = category;
         this.rating = rating;

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import course.ensf607.assignment6.billing.BillingService;
-import course.ensf607.assignment6.product.Product;
 
 @RestController
 @RequestMapping(path = "api/v1/customer")
@@ -47,15 +46,6 @@ public class CustomerController {
     	
         customerService.updateCustomer(id, name, email, password);
     }
-    
-    
-    
-    
-    @GetMapping(path = "/login/{eamil}/{password}")
-    public Boolean getProductById(@PathVariable String email, @PathVariable String password) {
-		return customerService.checkCustomerLogin(email, password);
-    }
-    
     
     
     

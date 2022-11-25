@@ -24,9 +24,13 @@ import lombok.Setter;
 public class Billing implements Serializable {
 
         @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
-        @Column(name="id")
+        @Column(name="customer_id")
         private Long id;
+
+        @OneToOne
+        @MapsId
+        @JoinColumn(name = "customer_id")
+        private Customer customer;
 
         private Long cardNumber;
 
@@ -41,19 +45,21 @@ public class Billing implements Serializable {
 //        2
 //        @OneToOne
 //        @MapsId
-//        @JoinColumn(name = "cutomer_id")
+//        @JoinColumn(name = "csutomer_id")
 //        private Customer customer;
 
         
-        public Billing(long id, Long cardNumber, Date expiryDate, Integer cvcNumber) {
+        public Billing(long id, Customer customer, Long cardNumber, Date expiryDate, Integer cvcNumber) {
                 this.id = id;
+                this.customer = customer;
                 this.cardNumber = cardNumber;
                 this.expiryDate = expiryDate;
                 this.cvcNumber = cvcNumber;
 
         }
         
-        public Billing(Long cardNumber, Date expiryDate, Integer cvcNumber) {
+        public Billing(Long cardNumber, Customer customer, Date expiryDate, Integer cvcNumber) {
+                this.customer = customer;
                 this.cardNumber = cardNumber;
                 this.expiryDate = expiryDate;
                 this.cvcNumber = cvcNumber;

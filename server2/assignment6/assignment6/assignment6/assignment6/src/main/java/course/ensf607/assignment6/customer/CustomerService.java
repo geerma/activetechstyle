@@ -63,23 +63,6 @@ public class CustomerService {
 		customer.setPassword(password);
 
     }
-
-
-	public Boolean checkCustomerLogin(String email, String password) {
-		Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(email);
-		if (customerOptional.isEmpty()) {
-    		throw new IllegalStateException("Customer does not exist!");
-    	}
-		
-		Customer customer = customerOptional.get();
-		
-		if(customer.getPassword().equals(password)) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
     
     
     
