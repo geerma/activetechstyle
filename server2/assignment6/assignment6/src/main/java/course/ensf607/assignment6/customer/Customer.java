@@ -2,13 +2,19 @@ package course.ensf607.assignment6.customer;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import course.ensf607.assignment6.billing.Billing;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -35,9 +41,10 @@ public class Customer implements Serializable {
 //     private Billing billing;
      
 //     2
-//	@OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
-//	@PrimaryKeyJoinColumn
-//	private Billing billing;
+@   JsonIgnore
+	@OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private Billing billing;
 	
 	
     

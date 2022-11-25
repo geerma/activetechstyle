@@ -42,11 +42,12 @@ public class BillingController {
     @PutMapping(path="{billingId}")
     public void updateBilling(  
     		@PathVariable("billingId") Long id,
+            @RequestParam(required= true) Customer customer,
 			@RequestParam(required= true) Long cardNumber,
 			@RequestParam(required= true) Date expiryDate,
 			@RequestParam(required= true) Integer cvcNumber) {
     	
-        billingService.updateBilling(id, cardNumber, expiryDate, cvcNumber);
+        billingService.updateBilling(id, customer, cardNumber, expiryDate, cvcNumber);
     }
 
     @GetMapping
