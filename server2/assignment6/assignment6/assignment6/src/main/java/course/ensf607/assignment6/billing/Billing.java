@@ -41,7 +41,7 @@ public class Billing implements Serializable {
 //        2
 //        @OneToOne
 //        @MapsId
-//        @JoinColumn(name = "cutomer_id")
+//        @JoinColumn(name = "csutomer_id")
 //        private Customer customer;
 
         

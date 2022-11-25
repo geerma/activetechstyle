@@ -27,15 +27,10 @@ public class BillingController {
     }
 
     
-    @GetMapping
-    public Billing getBillingById(@RequestBody Long id) {
-		return billingService.getBillingById(id);
-    }
-    
-    @GetMapping
-    public List<Billing> getAllBilling () {
-    	return billingService.getAllBillings();
-    }
+    // @GetMapping
+    // public Billing getBillingById(@RequestBody Long id) {
+	// 	return billingService.getBillingById(id);
+    // }
     
 
     @PostMapping
@@ -54,7 +49,10 @@ public class BillingController {
         billingService.updateBilling(id, cardNumber, expiryDate, cvcNumber);
     }
 
-    
+    @GetMapping
+    public List<Billing> getAllBilling () {
+        return billingService.getAllBillings();
+    }
     
 //    @PutMapping("{billingId}/customer/{customerId}")
 //    public Billing attachBillingToCustomer(@PathVariable Long billingId,
