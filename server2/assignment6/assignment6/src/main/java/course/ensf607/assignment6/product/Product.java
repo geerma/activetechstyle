@@ -28,6 +28,8 @@ public class Product implements Serializable {
 
     private String category;
 
+    private String description;
+
     private Double rating;
 
     private BigDecimal price;
@@ -39,10 +41,11 @@ public class Product implements Serializable {
     private String stockLocation;
 
     
-    public Product(String name, String category, Double rating, BigDecimal price, String image, 
+    public Product(String name, String category, String description, Double rating, BigDecimal price, String image, 
     		Integer stockQuantity, String stockLocation) {
         this.name = name;
         this.category = category;
+        this.description = description;
         this.rating = rating;
         this.price = price;
         this.image = image;
@@ -50,11 +53,12 @@ public class Product implements Serializable {
         this.stockLocation = stockLocation;
     }
 
-    public Product(Long id, String name, String category, Double rating, BigDecimal price, String image,
+    public Product(Long id, String name, String category, String description, Double rating, BigDecimal price, String image,
     		Integer stockQuantity, String stockLocation) {
         this.id = id;
         this.name = name;
         this.category = category;
+        this.description = description;
         this.rating = rating;
         this.price = price;
         this.image = image;
