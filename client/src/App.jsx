@@ -5,6 +5,8 @@ import Stylepage from "./Pages/Stylepage/Stylepage";
 import Activepage from "./Pages/Activepage/Activepage";
 import Techpage from "./Pages/Techpage/Techpage";
 import Loginpage from "./Pages/Loginpage/Loginpage";
+import Productpage from "./Pages/Productpage/Productpage";
+import Cartpage from "./Pages/Cartpage/Cartpage";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       <Route path="/tech" element={<Techpage />}></Route>
       <Route path="/style" element={<Stylepage />}></Route>
       <Route path="/login" element={<Loginpage />}></Route>
+      <Route path="/product/:itemId" element={<Productpage />}></Route>
+      <Route path="/cart" element={<Cartpage />}></Route>
     </Routes>
   );
 }
