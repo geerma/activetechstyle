@@ -1,7 +1,31 @@
-import React from 'react'
+import React from "react";
+import "./footer.css";
 
 export const Footer = () => {
   return (
-    <div>Footer</div>
-  )
-}
+    <div>
+      <div className="footerinfo_container">
+        <ul>
+          <li>
+            <span>COMPANY: ActiveTechStyle </span>
+          </li>
+          <li>
+            <span>TELEPHONE: +1 (403) 123-4567 </span>
+          </li>
+          <li>
+            <span>E-MAIL: activetechstyle@activetechstyle.com </span>
+          </li>
+          <li>
+            <span>ADDRESS: Calgary, Alberta, Canada </span>
+          </li>
+        </ul>
+      </div>
+      <div className="copyright_container">
+        <p>
+          Copyright © ActiveTechStyle. All Rights Reserved. Design by Geer,
+          Kendall & Mike
+        </p>
+      </div>
+    </div>
+  );
+};

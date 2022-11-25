@@ -6,6 +6,9 @@ import course.ensf607.assignment6.customer.Customer;
 import course.ensf607.assignment6.product.Product;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -31,18 +34,18 @@ public class Cart implements Serializable {
 
     private BigDecimal total = BigDecimal.ZERO;
 
-    @ManyToOne
-    @JoinColumn(name="customer_id", nullable=false)
+    @JsonIgnore
+    @OneToOne(mappedBy = "cart")
     private Customer customer;
 
     // @JsonIgnore
-    @ManyToMany
-    @JoinTable(
-            name = "products_attached",
-            joinColumns = @JoinColumn(name = "cart_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
-    private Map<Product, Integer> bin = new HashMap<>();
+    // @ManyToMany
+    // @JoinTable(
+    //         name = "products_attached",
+    //         joinColumns = @JoinColumn(name = "cart_id"),
+    //         inverseJoinColumns = @JoinColumn(name = "product_id")
+    // )
+    // private Map<Product, Integer> bin = new HashMap<>();
 
     public Cart() {
     }
@@ -83,18 +86,18 @@ public class Cart implements Serializable {
         this.customer = customer;
     }
 
-    public Map<Product, Integer> getBin() {
-        return bin;
-    }
+    // public Map<Product, Integer> getBin() {
+    //     return bin;
+    // }
 
-    public void setBin(Map<Product, Integer> bin) {
-        this.bin = bin;
-    }
+    // public void setBin(Map<Product, Integer> bin) {
+    //     this.bin = bin;
+    // }
 
-    public void addProduct(Product product, int x) {
-        // add x of item ( works for new items too )
-        bin.put(product, bin.getOrDefault(product, 0) + x);
-        total = total.add(product.getPrice().multiply(BigDecimal.valueOf(x)));
-    }
+    // public void addProduct(Product product, int x) {
+    //     // add x of item ( works for new items too )
+    //     bin.put(product, bin.getOrDefault(product, 0) + x);
+    //     total = total.add(product.getPrice().multiply(BigDecimal.valueOf(x)));
+    // }
 
 }

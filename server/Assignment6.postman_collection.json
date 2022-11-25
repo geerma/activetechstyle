@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "acd54ac1-89ba-464b-a34c-22d592bc8274",
+		"_postman_id": "45fd4d7d-29cd-4c5c-a0ea-858095eb06ae",
 		"name": "Assignment6",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "24510925"
@@ -88,6 +88,27 @@
 			"response": []
 		},
 		{
+			"name": "findAllBilling",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/billing",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"billing"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "attachBillingToCustomer",
 			"request": {
 				"method": "PUT",
@@ -112,12 +133,21 @@
 			"response": []
 		},
 		{
-			"name": "findAllBilling",
+			"name": "addNewCart",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customer\": \"null\",\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/billing",
+					"raw": "http://localhost:8080/api/v1/customer",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -126,7 +156,52 @@
 					"path": [
 						"api",
 						"v1",
-						"billing"
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findAllCart",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/cart",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "attachCartToCustomer",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/cart/1/customer/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cart",
+						"1",
+						"customer",
+						"1"
 					]
 				}
 			},

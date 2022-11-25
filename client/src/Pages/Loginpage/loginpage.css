@@ -1,13 +1,11 @@
-.home_container {
-    background: #FFFFFF;
-}
-
-.product_container {
+.loginregister_container {
     background: #dedfd7;
     padding-top: 1rem;
     padding-left: 2rem;
     padding-right: 2rem;
     padding-bottom: 1rem;
-    margin-left: 5rem;
-    margin-right: 5rem;
+    margin-left: 14rem;
+    margin-right: 14rem;
+
+    text-align: center;
 }

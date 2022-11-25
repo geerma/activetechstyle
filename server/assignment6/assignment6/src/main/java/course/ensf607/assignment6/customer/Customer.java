@@ -3,7 +3,7 @@ package course.ensf607.assignment6.customer;
 import course.ensf607.assignment6.billing.*;
 import course.ensf607.assignment6.cart.Cart;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+// import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 import javax.persistence.*;
@@ -37,12 +37,12 @@ public class Customer implements Serializable {
     @ManyToMany(mappedBy = "attachedCustomers")
     private Set<Billing> payMethods = new HashSet<>();
 
-    @OneToMany(mappedBy = "customer")
-    private Set<Cart> purchaseHistory = new HashSet<>();
+    // @OneToMany(mappedBy = "customer")
+    // private Set<Cart> purchaseHistory = new HashSet<>();
 
-    // @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
-    // @PrimaryKeyJoinColumn
-    // private Cart cart;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id", referencedColumnName = "id")
+    private Cart cart;
 
     public Customer() {
     }
@@ -121,14 +121,14 @@ public class Customer implements Serializable {
     //     return this;
     // }
 
-    // public Cart getCart() {
-    //     return cart;
-    // }
+    public Cart getCart() {
+        return cart;
+    }
 
-    // public Customer setCart(Cart cart) {
-    //     this.cart = cart;
-    //     return this;
-    // }
+    public Customer setCart(Cart cart) {
+        this.cart = cart;
+        return this;
+    }
 
     
 }
