@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 
-import course.ensf607.assignment6.billing.Billing;
 
 @Service
 public class CustomerService {
@@ -22,6 +21,9 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
+	public List<Customer> getAllCustomers() {
+		return customerRepository.findAll();
+	}
 
     public void addNewCustomer(Customer customer) {
         Optional<Customer> customerById = customerRepository.findCustomerById(customer.getId());
@@ -38,6 +40,14 @@ public class CustomerService {
             throw new IllegalStateException("Customer does'nt exist!");
         }
         return customerById.get();
+    }
+
+	public Customer getbyName(String customerName) {
+        Optional<Customer> customerByName = customerRepository.findOptional(customerName);
+        if (!customerByName.isPresent()) {
+            throw new IllegalStateException("Customer does'nt exist!");
+        }
+        return customerByName.get();
     }
 
     

@@ -27,10 +27,10 @@ public class BillingController {
     }
 
     
-    @GetMapping
-    public Billing getBillingById(@RequestBody Long id) {
-		return billingService.getBillingById(id);
-    }
+    // @GetMapping
+    // public Billing getBillingById(@RequestBody Long id) {
+	// 	return billingService.getBillingById(id);
+    // }
     
     @GetMapping
     public List<Billing> getAllBilling () {
