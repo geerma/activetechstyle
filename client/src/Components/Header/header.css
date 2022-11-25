@@ -41,6 +41,10 @@
   border-radius: 10px;
 }
 
+.header_category > input {
+  margin-left: 1rem;
+}
+
 .header_login button {
   padding: 0.5rem 1rem;
   font-weight: 400;
@@ -64,3 +68,7 @@
 .header_login button:hover {
   border: 1px solid #afa3a3;
 }
+
+.header_login img {
+  cursor: pointer;  
+} 

@@ -5,6 +5,14 @@ import "./loginpage.css";
 const Loginpage = () => {
   const [isRegistering, setIsRegistering] = useState(false);
 
+  const loginSubmit = () => {
+    console.log("login")
+  }
+
+  const registerSubmit = () => {
+    console.log("Register")
+  }
+
   return (
     <div className="loginpage_container">
       <Header />
@@ -15,16 +23,17 @@ const Loginpage = () => {
         </button>
         {isRegistering ? (
           <div className="register_container">
+            <input type="text" placeholder="Name" />
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />
             <input type="password" placeholder="Verify Password" />
-            <button>Register</button>
+            <button onClick={() => registerSubmit()}>Register</button>
           </div>
         ) : (
           <div className="login_container">
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />
-            <button>Login</button>
+            <button onClick={() => loginSubmit()}>Login</button>
           </div>
         )}
       </div>
