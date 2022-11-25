@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import course.ensf607.assignment6.billing.BillingService;
@@ -28,6 +29,18 @@ public class CustomerController {
     }
 
     @GetMapping
+    public List<Customer> getAllCustomers() {
+        return customerService.getAllCustomers();
+    }
+
+    @GetMapping("/name")
+    @ResponseBody
+    public Customer getbyName(@RequestBody String name) {
+        return customerService.getbyName(name);
+    }
+
+    @GetMapping("/id")
+    @ResponseBody
     public Customer getCustomerById(@RequestBody Long id) {
         return customerService.getCustomerById(id);
     }
@@ -51,8 +64,9 @@ public class CustomerController {
     
     
     
-    @GetMapping(path = "/login/{eamil}/{password}")
-    public Boolean getProductById(@PathVariable String email, @PathVariable String password) {
+    @GetMapping(path = "/login")
+    @ResponseBody
+    public Boolean checkCustomersLogin(@RequestBody String email, @RequestBody String password) {
 		return customerService.checkCustomerLogin(email, password);
     }
     
