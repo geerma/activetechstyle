@@ -1,6 +1,7 @@
 package course.ensf607.assignment6.billing;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -35,8 +36,11 @@ public class BillingService {
         }
         return billingById.get();
     }
-    
 
+	public List<Billing> getAllBillings() {
+        return billingRepository.findAll();
+    }
+    
     @Transactional
 	public void updateBilling(Long id, Long cardNumber, Date expiryDate, Integer cvcNumber) {
 		Optional<Billing> billingOptional = billingRepository.findBillingById(id);

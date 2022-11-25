@@ -44,10 +44,16 @@ public class ProductService {
 		product.setStockQuantity(currentQuantity - n);
 	}
 	
+    public void addNewProduct(Product product) {
+        Optional<Product> productById = productRepository.findProductById(product.getId());
+        if (productById.isPresent()) {
+            throw new IllegalStateException("Product already exist!");
+        }
+        productRepository.save(product);
+    }
 	
-	
-	
-	
-   
+	public List<Product> getAllProducts() {
+        return productRepository.findAll();
+    }
 
 }
