@@ -1,6 +1,5 @@
 package course.ensf607.assignment6.customer;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,14 +10,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import course.ensf607.assignment6.billing.BillingService;
-import course.ensf607.assignment6.product.Product;
-
 @RestController
-@RequestMapping(path = "api/v1/customer")
+@RequestMapping(path = "api/v1/customer/")
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -28,22 +23,23 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping
-    public List<Customer> getAllCustomers() {
-        return customerService.getAllCustomers();
-    }
-
-    @GetMapping("/name")
-    @ResponseBody
-    public Customer getbyName(@RequestBody String name) {
-        return customerService.getbyName(name);
-    }
-
-    @GetMapping("/id")
-    @ResponseBody
-    public Customer getCustomerById(@RequestBody Long id) {
+    @GetMapping(path = "byId/{id}")
+    public Customer getCustomerById(@PathVariable Long id) {
         return customerService.getCustomerById(id);
     }
+    
+    @GetMapping(path= "byName/{name}")
+    public Customer getCustomerByName(@PathVariable String name) {
+        return customerService.getCustomerByName(name);
+    }
+    
+    
+    @GetMapping(path= "all/")
+    public List<Customer> getAllCustomers() {
+        return customerService.getAllCustomer();
+    }
+    
+    
 
     @PostMapping
     public void registerNewCustomer(@RequestBody Customer customer) {
@@ -64,9 +60,8 @@ public class CustomerController {
     
     
     
-    @GetMapping(path = "/login")
-    @ResponseBody
-    public Boolean checkCustomersLogin(@RequestBody String email, @RequestBody String password) {
+    @GetMapping(path = "/login/")
+    public Boolean getProductById(@RequestParam String email, @RequestParam String password ) {
 		return customerService.checkCustomerLogin(email, password);
     }
     

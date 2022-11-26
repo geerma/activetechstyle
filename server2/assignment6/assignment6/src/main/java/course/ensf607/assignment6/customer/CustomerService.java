@@ -7,9 +7,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-
 
 @Service
 public class CustomerService {
@@ -21,9 +18,6 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-	public List<Customer> getAllCustomers() {
-		return customerRepository.findAll();
-	}
 
     public void addNewCustomer(Customer customer) {
         Optional<Customer> customerById = customerRepository.findCustomerById(customer.getId());
@@ -36,20 +30,32 @@ public class CustomerService {
     
     public Customer getCustomerById(Long customerId) {
         Optional<Customer> customerById = customerRepository.findById(customerId);
-        if (!customerById.isPresent()) {
+        if (customerById.isEmpty()) {
             throw new IllegalStateException("Customer does'nt exist!");
         }
         return customerById.get();
     }
 
-	public Customer getbyName(String customerName) {
-        Optional<Customer> customerByName = customerRepository.findOptional(customerName);
-        if (!customerByName.isPresent()) {
+    
+    
+
+	public Customer getCustomerByName(String name) {
+		Optional<Customer> customerByName = customerRepository.findCustomerByName(name);
+        if (customerByName.isEmpty()) {
             throw new IllegalStateException("Customer does'nt exist!");
         }
         return customerByName.get();
-    }
-
+	}
+	
+	
+    
+    
+	public List<Customer> getAllCustomer() {
+		return customerRepository.findAll();
+	}
+	
+	
+	
     
     @Transactional
     public void updateCustomer(Long id, String name, String email, String password) {
@@ -90,6 +96,11 @@ public class CustomerService {
 			return false;
 		}
 	}
+
+
+
+
+
     
     
     

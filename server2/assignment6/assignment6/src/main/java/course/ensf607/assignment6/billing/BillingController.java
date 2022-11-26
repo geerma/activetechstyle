@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import course.ensf607.assignment6.customer.Customer;
-
 @RestController
-@RequestMapping(path = "api/v1/billing")
+@RequestMapping(path = "api/v1/billing/")
 public class BillingController {
 
     private final BillingService billingService;
@@ -27,12 +25,12 @@ public class BillingController {
     }
 
     
-    // @GetMapping
-    // public Billing getBillingById(@RequestBody Long id) {
-	// 	return billingService.getBillingById(id);
-    // }
+    @GetMapping(path = "byId/{id}")
+    public Billing getBillingById(@PathVariable Long id) {
+		return billingService.getBillingById(id);
+    }
     
-    @GetMapping
+    @GetMapping(path= "all/")
     public List<Billing> getAllBilling () {
     	return billingService.getAllBillings();
     }

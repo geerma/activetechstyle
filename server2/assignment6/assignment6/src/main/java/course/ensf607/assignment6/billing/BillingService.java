@@ -37,6 +37,13 @@ public class BillingService {
         return billingById.get();
     }
     
+    
+	public List<Billing> getAllBillings() {
+		return billingRepository.findAll();
+	}
+	
+	
+	
 
     @Transactional
 	public void updateBilling(Long id, Long cardNumber, Date expiryDate, Integer cvcNumber) {
@@ -63,9 +70,7 @@ public class BillingService {
 	}
 
 
-	public List<Billing> getAllBillings() {
-		return billingRepository.findAll();
-	}
+
 
 
 }
