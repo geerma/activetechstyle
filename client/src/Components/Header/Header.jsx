@@ -9,8 +9,6 @@ import magnifyglassLogo from "../../assets/magnifyglass.jpg"
 export const Header = () => {
   const navigate = useNavigate();
 
-
-
   return (
     <div className="header_container">
       <div className="header_logo">
