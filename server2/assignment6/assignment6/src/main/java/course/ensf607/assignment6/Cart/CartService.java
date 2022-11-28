@@ -1,4 +1,4 @@
-package course.ensf607.assignment6.Cart;
+package course.ensf607.assignment6.cart;
 
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -58,6 +58,10 @@ public class CartService {
 		
 		cart.setPurchaseDate(purchaseDate);
 
+	}
+
+	public void updateCart(Cart cart) {
+		cartRepository.save(cart);
 	}
 
 

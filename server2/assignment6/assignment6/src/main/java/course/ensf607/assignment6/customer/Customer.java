@@ -1,14 +1,18 @@
 package course.ensf607.assignment6.customer;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import course.ensf607.assignment6.cart.Cart;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,6 +32,9 @@ public class Customer implements Serializable {
 	private String email;
 
 	private String password;
+
+    @OneToMany(mappedBy="customer")
+    private Set<Cart> history = new HashSet<>();
 
 //	1
 //     @OneToOne(cascade = CascadeType.ALL)

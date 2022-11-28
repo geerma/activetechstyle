@@ -1,4 +1,4 @@
-package course.ensf607.assignment6.Cart;
+package course.ensf607.assignment6.cart;
 
 import java.sql.Date;
 import java.util.Optional;
