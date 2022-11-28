@@ -21,7 +21,8 @@ public class CustomerService {
 
     public void addNewCustomer(Customer customer) {
         Optional<Customer> customerById = customerRepository.findCustomerById(customer.getId());
-        if (customerById.isPresent()) {
+        Optional<Customer> customerByEmail = customerRepository.findCustomerByEmail(customer.getEmail());
+        if (customerById.isPresent() || customerByEmail.isPresent()) {
             throw new IllegalStateException("Customer already exist!");
         }
         customerRepository.save(customer);

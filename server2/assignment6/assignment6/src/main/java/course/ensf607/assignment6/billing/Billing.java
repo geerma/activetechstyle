@@ -3,13 +3,12 @@ package course.ensf607.assignment6.billing;
 import java.io.Serializable;
 import java.sql.Date;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -25,7 +24,7 @@ public class Billing implements Serializable {
 
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
-        @Column(name="id")
+//      @Column(name="customer_id")
         private Long id;
 
         private Long cardNumber;
@@ -35,30 +34,35 @@ public class Billing implements Serializable {
         private Integer cvcNumber;
         
 //        1
-//        @OneToOne(mappedBy = "customer")
+//        @OneToOne(mappedBy = "billing")	
 //        private Customer customer;
 
 //        2
 //        @OneToOne
 //        @MapsId
-//        @JoinColumn(name = "cutomer_id")
+//        @JoinColumn(name = "customer_id")
 //        private Customer customer;
+        
+        
+//        3
+        @OneToOne(cascade = CascadeType.ALL)
+        @JoinColumn(name = "customer_id", referencedColumnName = "id")
+        private Customer customer;
 
         
-        public Billing(long id, Long cardNumber, Date expiryDate, Integer cvcNumber) {
-                this.id = id;
-                this.cardNumber = cardNumber;
-                this.expiryDate = expiryDate;
-                this.cvcNumber = cvcNumber;
+		public Billing(Long id, Long cardNumber, Date expiryDate, Integer cvcNumber) {
+			this.id = id;
+			this.cardNumber = cardNumber;
+			this.expiryDate = expiryDate;
+			this.cvcNumber = cvcNumber;
+		}
 
-        }
-        
-        public Billing(Long cardNumber, Date expiryDate, Integer cvcNumber) {
-                this.cardNumber = cardNumber;
-                this.expiryDate = expiryDate;
-                this.cvcNumber = cvcNumber;
-        }
-
+		public Billing(Long cardNumber, Date expiryDate, Integer cvcNumber) {
+			this.cardNumber = cardNumber;
+			this.expiryDate = expiryDate;
+			this.cvcNumber = cvcNumber;
+		}
+		
 
         
 }

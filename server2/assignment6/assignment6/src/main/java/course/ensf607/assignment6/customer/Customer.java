@@ -35,6 +35,7 @@ public class Customer implements Serializable {
 //     private Billing billing;
      
 //     2
+//	@JsonIgnore
 //	@OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
 //	@PrimaryKeyJoinColumn
 //	private Billing billing;

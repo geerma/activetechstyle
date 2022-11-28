@@ -9,10 +9,14 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import course.ensf607.assignment6.customer.Customer;
+import course.ensf607.assignment6.customer.CustomerService;
+
 @Service
 public class BillingService {
 
     private final BillingRepository billingRepository;
+	
 
     @Autowired
     public BillingService(BillingRepository billingRepository) {
@@ -21,17 +25,19 @@ public class BillingService {
     
     
 	public void addNewBilling(Billing billing) {
+		
 		Optional<Billing> billingById = billingRepository.findBillingById(billing.getId());
 		if (billingById.isPresent()) {
 			throw new IllegalStateException("Billing already exist!");
 		}
+		
 		billingRepository.save(billing);
 	}
 	
     
     public Billing getBillingById(Long billingId) {
-        Optional<Billing> billingById = billingRepository.findById(billingId);
-        if (!billingById.isPresent()) {
+        Optional<Billing> billingById = billingRepository.findBillingById(billingId);
+        if (billingById.isEmpty()) {
             throw new IllegalStateException("Billing doesn't exist!");
         }
         return billingById.get();
@@ -65,7 +71,6 @@ public class BillingService {
 		billing.setExpiryDate(expiryDate);
 
 		billing.setCvcNumber(cvcNumber);
-		
     	
 	}
 
