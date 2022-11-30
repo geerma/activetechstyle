@@ -10,17 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import course.ensf607.assignment6.customer.Customer;
+import course.ensf607.assignment6.customer.CustomerRepository;
 import course.ensf607.assignment6.customer.CustomerService;
 
 @Service
 public class BillingService {
 
     private final BillingRepository billingRepository;
-	
+	private final CustomerRepository customerRepository;
 
     @Autowired
-    public BillingService(BillingRepository billingRepository) {
+    public BillingService(BillingRepository billingRepository, CustomerRepository customerRepository) {
         this.billingRepository = billingRepository;
+		this.customerRepository = customerRepository;
     }
     
     
@@ -74,6 +76,26 @@ public class BillingService {
     	
 	}
 
+
+
+	@Transactional
+    public Billing attachBillingToCustomer(Long customerId, Long billingId) {
+    	Optional<Customer> customerOptional = customerRepository.findCustomerById(customerId);
+    	if (customerOptional.isEmpty()) {
+    		throw new IllegalStateException("Customer does not exist!");
+    	}
+		Customer customer = customerOptional.get();
+
+		Optional<Billing> billingOptional = billingRepository.findBillingById(billingId);
+    	if (customerOptional.isEmpty()) {
+    		throw new IllegalStateException("Billing does not exist!");
+    	}
+    	Billing billing = billingOptional.get();
+
+    	billing.setCustomer(customer);
+
+		return billing;
+    }
 
 
 

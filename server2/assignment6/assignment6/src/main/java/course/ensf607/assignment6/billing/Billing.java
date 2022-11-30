@@ -62,7 +62,7 @@ public class Billing implements Serializable {
 			this.expiryDate = expiryDate;
 			this.cvcNumber = cvcNumber;
 		}
+
 		
 
-        
 }

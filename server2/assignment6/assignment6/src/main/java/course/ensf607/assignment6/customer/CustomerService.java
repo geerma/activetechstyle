@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class CustomerService {
 
@@ -82,7 +83,8 @@ public class CustomerService {
     }
 
 
-	public Boolean checkCustomerLogin(String email, String password) {
+
+	public Customer checkCustomerLogin(String email, String password) {
 		Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(email);
 		if (customerOptional.isEmpty()) {
     		throw new IllegalStateException("Customer does not exist!");
@@ -91,13 +93,12 @@ public class CustomerService {
 		Customer customer = customerOptional.get();
 		
 		if(customer.getPassword().equals(password)) {
-			return true;
+			return customer;
 		}
 		else {
-			return false;
+			return null;
 		}
 	}
-
 
 
 

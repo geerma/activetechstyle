@@ -112,7 +112,14 @@ public class Cart implements Serializable {
 		products.add(product);
 	}
 	
-	
+	public void removeProduct(Product product) {
+		products.remove(product);
+	}
+
+
+	public void empty() {
+		products.clear();
+	}
     
 
     
