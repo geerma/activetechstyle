@@ -61,7 +61,7 @@ public class CustomerController {
     
     
     @GetMapping(path = "/login/")
-    public Boolean getProductById(@RequestParam String email, @RequestParam String password ) {
+    public Boolean custmerLogin(@RequestParam String email, @RequestParam String password ) {
 		return customerService.checkCustomerLogin(email, password);
     }
     
