@@ -5,13 +5,80 @@ import "./loginpage.css";
 const Loginpage = () => {
   const [isRegistering, setIsRegistering] = useState(false);
 
-  const loginSubmit = () => {
-    console.log("login")
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  const [registerName, setRegisterName] = useState();
+  const [registerEmail, setRegisterEmail] = useState();
+  const [registerPassword, setRegisterPassword] = useState();
+  const [verifyRegisterPassword, setVerifyRegisterPassword] = useState();
+
+  const backend_endpoint = "http://localhost:8080";
+
+  const login = async () => {
+    await fetch(
+      `${backend_endpoint}/api/v1/customer/login/?email=${email}&password=${password}`
+    )
+      .then((res) => res.json())
+      .then((data) => verifyLogin(data))
+      .catch((error) => window.alert(error));
+  };
+
+  const verifyLogin = (response) => {
+    if (response == "true") {
+      localStorage.setItem("token", "true");
+    } else {
+      window.alert("Incorrect Username or Password")
+    }
   }
 
-  const registerSubmit = () => {
-    console.log("Register")
+  const registerRequestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name: registerName,
+      email: registerEmail,
+      password: registerPassword,
+    }),
+  };
+
+  const register = async () => {
+    await fetch(`${backend_endpoint}/api/v1/customer/`, registerRequestOptions)
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((error) => window.alert(error));
+  };
+
+  const verifyRegister = (response) => {
+    if (response) {
+      window.alert("You have successful registered.")
+      navigate("/login")
+    } else {
+      window.alert("Please try again.")
+    } 
   }
+
+  const loginSubmit = () => {
+    if (email != undefined && password != undefined) {
+      login();
+    } else {
+      window.alert("Please enter a valid email and password.");
+    }
+  };
+
+  const registerSubmit = () => {
+    if (
+      registerName == undefined ||
+      registerEmail == undefined ||
+      registerPassword == undefined
+    ) {
+      window.alert("Please fill in all inputs.");
+    } else if (registerPassword == verifyRegisterPassword) {
+      register();
+    } else {
+      window.alert("Please check that your passwords are matching.");
+    }
+  };
 
   return (
     <div className="loginpage_container">
@@ -23,16 +90,52 @@ const Loginpage = () => {
         </button>
         {isRegistering ? (
           <div className="register_container">
-            <input type="text" placeholder="Name" />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <input type="password" placeholder="Verify Password" />
+            <input
+              type="text"
+              placeholder="Name"
+              key={1}
+              onChange={(e) => setRegisterName(e.target.value)}
+              required
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              key={2}
+              onChange={(e) => setRegisterEmail(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              key={3}
+              onChange={(e) => setRegisterPassword(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              placeholder="Verify Password"
+              key={4}
+              onChange={(e) => setVerifyRegisterPassword(e.target.value)}
+              required
+            />
             <button onClick={() => registerSubmit()}>Register</button>
           </div>
         ) : (
           <div className="login_container">
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
+            <input
+              type="email"
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
+              key={5}
+              required
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              key={6}
+              required
+            />
             <button onClick={() => loginSubmit()}>Login</button>
           </div>
         )}

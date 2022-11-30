@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Header } from "../../Components/Header/Header";
 import "./productpage.css";
 
 const Productpage = () => {
 
   const [product, setProduct] = useState({})
+
+  const params = useParams();
 
   const backend_endpoint = "http://localhost:8080";
 
@@ -16,7 +19,7 @@ const Productpage = () => {
   };
 
   useEffect(() => {
-    fetchProductById(1);
+    fetchProductById(params.itemId);
   }, []);
 
   const addToCart = () => {
