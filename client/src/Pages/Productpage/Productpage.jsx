@@ -4,10 +4,11 @@ import { Header } from "../../Components/Header/Header";
 import "./productpage.css";
 
 const Productpage = () => {
-
-  const [product, setProduct] = useState({})
+  const [product, setProduct] = useState({});
 
   const params = useParams();
+  
+  let cartList = [];
 
   const backend_endpoint = "http://localhost:8080";
 
@@ -23,7 +24,14 @@ const Productpage = () => {
   }, []);
 
   const addToCart = () => {
-    console.log("Added to Cart");
+    if (sessionStorage.getItem("cartItems") != null) {
+      cartList = sessionStorage.getItem("cartItems").split(",");
+    } else {
+      cartList = [];
+    }
+    cartList.push(params.itemId);
+    sessionStorage.setItem("cartItems", cartList);
+    console.log(sessionStorage.getItem("cartItems"));
   };
 
   return (
