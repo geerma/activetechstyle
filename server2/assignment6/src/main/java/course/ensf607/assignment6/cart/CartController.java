@@ -18,6 +18,7 @@ import course.ensf607.assignment6.customer.Customer;
 import course.ensf607.assignment6.customer.CustomerService;
 import course.ensf607.assignment6.product.Product;
 import course.ensf607.assignment6.product.ProductService;
+import course.ensf607.assignment6.utility.LongList;
 
 @RestController
 @RequestMapping(path = "api/v1/cart/")
@@ -82,17 +83,28 @@ public class CartController {
         return cart;
     }
 
+    @PutMapping(path= "{cartId}/addProductsById/")
+    public Cart addProductsToCart(@PathVariable Long cartId,
+                                    @RequestBody(required= true) LongList productIds) {
+        Cart cart = cartService.getCartById(cartId);
+        List<Long> products = productIds.getData();
+        for (int i = 0; i < products.size(); i++) {
+            Product product = productService.getProductById(products.get(i));
+            cart.addProduct(product);
+        }
+        cartService.updateCart(cart);
+return cart;
+    }
+
     @PutMapping(path= "{cartId}/addProducts/")
     public Cart addProductsToCart(@PathVariable Long cartId,
                                     @RequestBody(required= true) List<Product> products) {
-        
         Cart cart = cartService.getCartById(cartId);
         for (int i = 0; i < products.size(); i++) {
             Product product = productService.getProductById(products.get(i).getId());
             cart.addProduct(product);
         }
         cartService.updateCart(cart);
-
 return cart;
     }
 
