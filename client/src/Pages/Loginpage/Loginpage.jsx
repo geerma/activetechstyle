@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import { Header } from "../../Components/Header/Header";
 import "./loginpage.css";
 
@@ -13,6 +14,8 @@ const Loginpage = () => {
   const [registerPassword, setRegisterPassword] = useState();
   const [verifyRegisterPassword, setVerifyRegisterPassword] = useState();
 
+  const navigate = useNavigate();
+
   const backend_endpoint = "http://localhost:8080";
 
   const login = async () => {
@@ -21,14 +24,15 @@ const Loginpage = () => {
     )
       .then((res) => res.json())
       .then((data) => verifyLogin(data))
-      .catch((error) => window.alert(error));
+      .catch(() => window.alert("Incorrect Username or Password"));
   };
 
   const verifyLogin = (response) => {
-    if (response == "true") {
-      localStorage.setItem("token", "true");
+    if (response != null) {
+      localStorage.setItem("customerId", response.id);
+      navigate("/");
     } else {
-      window.alert("Incorrect Username or Password")
+      window.alert("Invalid Username or Password");
     }
   }
 
@@ -45,17 +49,17 @@ const Loginpage = () => {
   const register = async () => {
     await fetch(`${backend_endpoint}/api/v1/customer/`, registerRequestOptions)
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => verifyRegister(data))
       .catch((error) => window.alert(error));
   };
 
   const verifyRegister = (response) => {
-    if (response) {
-      window.alert("You have successful registered.")
-      navigate("/login")
-    } else {
-      window.alert("Please try again.")
-    } 
+    // if (response != null) {
+    //   window.alert("You have successful registered.")
+    //   Navigate("/login")
+    // } else {
+    //   window.alert("Please try again.")
+    // } 
   }
 
   const loginSubmit = () => {
