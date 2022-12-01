@@ -12,7 +12,7 @@ const Cartpage = () => {
   const [cardNumber, setCardNumber] = useState();
   const [expiryDate, setExpiryDate] = useState();
   const [cvcNumber, setCvcNumber] = useState();
-
+  
   const customerId = sessionStorage.getItem("customerId");
   let purchaseCartList = [];
 
@@ -41,7 +41,6 @@ const Cartpage = () => {
       sessionStorage.removeItem("cartItems");
       if (hasBilling == false) {
         addNewBilling();
-        // attachBillingToCustomer();
       }
       window.alert("Purchase Successful");
       // navigate("/history");
@@ -68,25 +67,26 @@ const Cartpage = () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        cardNumber: "00875000112",
-        expiryDate: "2025-11-01",
-        cvcNumber: "183",
+        cardNumber: cardNumber,
+        expiryDate: expiryDate,
+        cvcNumber: cvcNumber,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log("New Billing: ",data);
+        attachBillingToCustomer(data.id.toString());
       })
       .catch((error) => window.alert(error));
   };
 
-  const attachBillingToCustomer = async () => {
-    await fetch(`${backend_endpoint}/api/v1/billing/1/customer/${customerId}`, {
+  const attachBillingToCustomer = async (billingId) => {
+    await fetch(`${backend_endpoint}/api/v1/billing/${billingId}/customer/${customerId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
     })
     .then((res) => res.json())
-    // .then((data) => console.log(data))
+    .then((data) => console.log("Attach Billing",data))
     .catch((error) => console.log(error));
   };
 
