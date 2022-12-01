@@ -39,7 +39,7 @@ public class ProductController {
     }
     
     @GetMapping(path = "byName/{name}")
-    public Product getProductById(@PathVariable String name) {
+    public List<Product> getProductssByName(@PathVariable String name) {
 		return productService.getProductByName(name);
     }
     

@@ -34,12 +34,13 @@ public class ProductService {
    }
    
    
-	public Product getProductByName(String name) {
-		Optional<Product> productByName = productRepository.findProductByName(name);
+	public List<Product> getProductByName(String name) {
+		String temp = "%"+name+"%";
+		List<Product> productByName = productRepository.findProductByName(temp);
 		if (productByName.isEmpty()) {
 			throw new IllegalStateException("Product doesn't exist!");
-		}
-		return productByName.get();
+		}		
+		return productByName;
 	}
 	
    
@@ -62,9 +63,9 @@ public class ProductService {
    
    
 	public void addNewProduct(Product product) {
-		Optional<Product> billingById = productRepository.findProductById(product.getId());
-		if (billingById.isPresent()) {
-			throw new IllegalStateException("Billing already exist!");
+		Optional<Product> productById = productRepository.findProductById(product.getId());
+		if (productById.isPresent()) {
+			throw new IllegalStateException("Product already exist!");
 		}
 		productRepository.save(product);
 	}
@@ -79,15 +80,8 @@ public class ProductService {
     	}
     	
     	Product product = productOptional.get();
-    		
-		if (name != product.getName()) {
-			Optional<Product> productO = productRepository.findProductByName(name);
-			if (productO.isPresent()) {
-				throw new IllegalStateException("Card number is already taken!");
-			}
-			product.setName(name);
-		}
-		
+
+		product.setName(name);
 		product.setCategory(category);
 		product.setRating(rating);
 		product.setPrice(price);
