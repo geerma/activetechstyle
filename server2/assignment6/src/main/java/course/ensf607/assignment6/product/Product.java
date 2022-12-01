@@ -2,17 +2,13 @@ package course.ensf607.assignment6.product;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-// import java.util.HashSet;
-// import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import course.ensf607.assignment6.cart.Cart;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

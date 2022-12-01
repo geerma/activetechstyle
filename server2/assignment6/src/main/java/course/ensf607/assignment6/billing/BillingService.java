@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import course.ensf607.assignment6.customer.Customer;
 import course.ensf607.assignment6.customer.CustomerRepository;
-import course.ensf607.assignment6.customer.CustomerService;
 
 @Service
 public class BillingService {

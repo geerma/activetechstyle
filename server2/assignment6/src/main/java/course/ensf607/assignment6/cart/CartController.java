@@ -82,6 +82,20 @@ public class CartController {
         return cart;
     }
 
+    @PutMapping(path= "{cartId}/addProducts/")
+    public Cart addProductsToCart(@PathVariable Long cartId,
+                                    @RequestBody(required= true) List<Product> products) {
+        
+        Cart cart = cartService.getCartById(cartId);
+        for (int i = 0; i < products.size(); i++) {
+            Product product = productService.getProductById(products.get(i).getId());
+            cart.addProduct(product);
+        }
+        cartService.updateCart(cart);
+
+return cart;
+    }
+
     @PutMapping(path= "{cartId}/removeProduct/{productId}")
     public Cart removeProductFromCart(@PathVariable Long cartId,
                                          @PathVariable Long productId) {
