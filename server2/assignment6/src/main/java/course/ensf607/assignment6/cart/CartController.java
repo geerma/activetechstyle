@@ -2,7 +2,9 @@ package course.ensf607.assignment6.cart;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,6 +53,21 @@ public class CartController {
 	@PostMapping
     public void registerNewCart(@RequestBody Cart cart) {
 		cartService.addNewCart(cart);
+    }
+
+    @PostMapping(path="customer/{customerId}")
+    public Customer registerNewCartToCustomer(@PathVariable Long customerId,
+                                            @RequestBody LongList productIds) {
+        Set<Product> products = new HashSet<>();
+        List<Long> ids = productIds.getData();
+        for (int i = 0; i < ids.size(); i++) {
+            Product product = productService.getProductById(ids.get(i));
+            products.add(product);
+        }
+        Customer customer = customerService.getCustomerById(customerId);
+        Cart cart = new Cart(customer, products);
+		cartService.addNewCart(cart);
+        return customer;
     }
 	
     @PutMapping(path="{cartId}")

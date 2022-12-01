@@ -89,6 +89,8 @@ public class Cart implements Serializable {
 		this.purchaseDate = purchaseDate;
 	}
 
+	
+
 		// OPTION 2
 	// public void addProduct(Product product, int num) {
 	// 	quantity.put(product, num);
@@ -99,18 +101,43 @@ public class Cart implements Serializable {
 	// 	products.put(product, num);
 	// }
 
-			// OPTION 4 & 5
+	public Cart(Customer customer, Set<Product> products) {
+		this.customer = customer;
+		this.products = products;
+		purchaseDate = new Date(System.currentTimeMillis());
+		this.status = "True";
+		updatePrice(products);
+	}
+
+
+	// OPTION 4 & 5
 	public void addProduct(Product product) {
 		products.add(product);
+		updatePrice();
 	}
 	
 	public void removeProduct(Product product) {
 		products.remove(product);
+		updatePrice();
 	}
 
+	public void updatePrice() {
+		totalPay = BigDecimal.ZERO;
+		for (Product product : products) {
+			totalPay.add(product.getPrice());
+		}
+	}
+
+	public void updatePrice(Set<Product> products) {
+		totalPay = BigDecimal.ZERO;
+		for (Product product : products) {
+			totalPay.add(product.getPrice());
+		}
+	}
 
 	public void empty() {
 		products.clear();
+		updatePrice();
 	}
     
 
