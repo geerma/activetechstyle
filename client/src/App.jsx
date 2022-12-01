@@ -6,6 +6,7 @@ import Activepage from "./Pages/Activepage/Activepage";
 import Techpage from "./Pages/Techpage/Techpage";
 import Loginpage from "./Pages/Loginpage/Loginpage";
 import Productpage from "./Pages/Productpage/Productpage";
+import Searchpage from "./Pages/Searchpage/Searchpage";
 import Cartpage from "./Pages/Cartpage/Cartpage";
 import Orderhistorypage from "./Pages/Orderhistorypage/Orderhistorypage";
 
@@ -18,6 +19,7 @@ function App() {
       <Route path="/style" element={<Stylepage />}></Route>
       <Route path="/login" element={<Loginpage />}></Route>
       <Route path="/product/:itemId" element={<Productpage />}></Route>
+      <Route path="/search/:query" element={<Searchpage />}></Route>
       <Route path="/cart" element={<Cartpage />}></Route>
       <Route path="/history" element={<Orderhistorypage />}></Route>
     </Routes>

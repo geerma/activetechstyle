@@ -11,6 +11,7 @@ export const Header = () => {
   const navigate = useNavigate();
 
   const [token, setToken] = useState("null");
+  const [search, setSearch] = useState();
 
   useEffect(() => {
     if (sessionStorage.getItem("customerId") == null) {
@@ -29,6 +30,14 @@ export const Header = () => {
     window.location.reload();
   }
 
+  const navigateToSearchPage = () => {
+    if (search != undefined) {
+      navigate(`/search/${search}`);
+    } else {
+      window.alert("Please enter text in the search bar.")
+    }
+  };
+
   return (
     <div className="header_container">
       <div className="header_logo">
@@ -40,8 +49,8 @@ export const Header = () => {
         <button onClick={() => navigate("/active")}>Active</button>
         <button onClick={() => navigate("/tech")}>Tech</button>
         <button onClick={() => navigate("/style")}>Style</button>
-        <input placeholder="Search" />
-        <button>
+        <input placeholder="Search" onChange={(e) => setSearch(e.target.value)}/>
+        <button onClick={() => navigateToSearchPage()}>
           <img img src={magnifyglassLogo} height={20} />
         </button>
       </div>
