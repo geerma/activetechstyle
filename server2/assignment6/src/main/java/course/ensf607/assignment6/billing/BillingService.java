@@ -49,7 +49,9 @@ public class BillingService {
 		return billingRepository.findAll();
 	}
 	
-	
+	public void deleteBillingById(Long billingId) {
+		billingRepository.deleteById(billingId);
+	}
 	
 
     @Transactional
