@@ -29,8 +29,12 @@ const Loginpage = () => {
 
   const verifyLogin = (response) => {
     if (response != null) {
-      sessionStorage.setItem("customerId", response.id);
-      navigate("/");
+      if (response.id == undefined) {
+        window.alert("Invalid login. User may not exist.")
+      } else {
+        sessionStorage.setItem("customerId", response.id);
+        navigate("/");
+      }
     } else {
       window.alert("Invalid Username or Password");
     }

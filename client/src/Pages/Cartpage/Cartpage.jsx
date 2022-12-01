@@ -11,6 +11,9 @@ const Cartpage = () => {
   const [expiryDate, setExpiryDate] = useState();
   const [cvcNumber, setCvcNumber] = useState();
 
+  const customerId = sessionStorage.getItem("customerId")
+  let purchaseCartList = [];
+
   useEffect(() => {
     if (
       sessionStorage.getItem("customerId") == "null" ||
@@ -25,8 +28,33 @@ const Cartpage = () => {
   }, []);
 
   const handlePurchase = () => {
-    const purchaseCartList = cartItems.map((item) => parseInt(item));
-    console.log(purchaseCartList);
+    if (cartItems == undefined) {
+      window.alert("Please add items to cart")
+    } else {
+      purchaseCartList = cartItems.map((item) => parseInt(item));
+      console.log(purchaseCartList);
+      purchase();
+      sessionStorage.removeItem("cartItems");
+      window.alert("Purchase Successful")
+      // window.location.reload();
+    }
+  };
+
+  const backend_endpoint = "http://localhost:8080";
+
+  const purchaseRequestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      "data": purchaseCartList
+    }),
+  };
+
+  const purchase = async () => {
+    await fetch(`${backend_endpoint}/api/v1/cart/customer/${customerId}`, purchaseRequestOptions)
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((error) => window.alert(error));
   };
 
   return (

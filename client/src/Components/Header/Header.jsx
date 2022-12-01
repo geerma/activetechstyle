@@ -19,6 +19,7 @@ export const Header = () => {
     } else {
       setToken(sessionStorage.getItem("customerId"));
     }
+    console.log(sessionStorage.getItem("customerId"))
   }, []);
 
   const handleSignout = () => {
