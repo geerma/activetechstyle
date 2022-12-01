@@ -40,8 +40,9 @@ public class BillingController {
     
 
     @PostMapping
-    public void registerNewBilling(@RequestBody Billing billing) {
+    public Billing registerNewBilling(@RequestBody Billing billing) {
         billingService.addNewBilling(billing);
+        return billing;
     }
 
     
