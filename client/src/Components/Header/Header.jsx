@@ -9,16 +9,21 @@ import magnifyglassLogo from "../../assets/magnifyglass.jpg";
 export const Header = () => {
   const navigate = useNavigate();
 
-  const [token, setToken] = useState();
+  const [token, setToken] = useState("null");
 
   useEffect(() => {
-    setToken(localStorage.getItem("customerId"));
-    console.log(localStorage.getItem("customerId"))
+    if (sessionStorage.getItem("customerId") == null) {
+      sessionStorage.setItem("customerId", "null");
+      setToken("null");
+    } else {
+      setToken(sessionStorage.getItem("customerId"));
+    }
+    console.log(sessionStorage.getItem("customerId"));
   }, []);
 
   const handleSignout = () => {
-    localStorage.setItem("customerId", "null");
-    setToken(localStorage.getItem("customerId"));
+    sessionStorage.setItem("customerId", "null");
+    setToken(sessionStorage.getItem("customerId"));
     navigate("/");
     window.location.reload();
   }
@@ -40,7 +45,7 @@ export const Header = () => {
         </button>
       </div>
       <div className="header_login">
-        {token != "null" ? (
+        {(token != "null") ? (
           <button onClick={() => handleSignout()}>Signout</button>
         ) : (
           <button onClick={() => navigate("/login")}>Login / Signup</button>
