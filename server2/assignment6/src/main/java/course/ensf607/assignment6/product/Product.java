@@ -2,13 +2,19 @@ package course.ensf607.assignment6.product;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import course.ensf607.assignment6.cart.Cart;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,6 +44,10 @@ public class Product implements Serializable {
     private String stockLocation;
     
     private String description;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "products")
+    private Set<Cart> subjects = new HashSet<>();
 
         // OPTION 3 - from Cart.java
     // private Cart number;

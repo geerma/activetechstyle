@@ -13,8 +13,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -42,7 +43,7 @@ public class Cart implements Serializable {
 	
     private String status ; // "checkedout"
 
-    private BigDecimal totalPay = BigDecimal.ZERO;
+    private BigDecimal totalPay;
     
     private Date purchaseDate;
 
@@ -70,7 +71,15 @@ public class Cart implements Serializable {
 	// private List<Product> products = new ArrayList<>();
 
 		//OPTION 5
-	@OneToMany
+	// @OneToMany
+	// private Set<Product> products;
+
+	@ManyToMany
+    @JoinTable(
+            name = "cart_contents",
+            joinColumns = @JoinColumn(name = "cart_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
 	private Set<Product> products;
     
 	public Cart(Long id, Customer customer, String status, BigDecimal totalPay, Date purchaseDate) {
