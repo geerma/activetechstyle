@@ -41,7 +41,7 @@ public class Customer implements Serializable {
     private Set<Cart> history = new HashSet<>();
 
 	// 1
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "billing_id", referencedColumnName = "id")
     private Billing billing;
      

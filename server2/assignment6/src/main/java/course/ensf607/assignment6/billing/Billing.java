@@ -37,7 +37,7 @@ public class Billing implements Serializable {
         
 //        1
 	   @JsonIgnore
-       @OneToOne(mappedBy = "billing")	
+       @OneToOne(mappedBy = "billing", orphanRemoval = true)	
        private Customer customer;
 
 //        2
