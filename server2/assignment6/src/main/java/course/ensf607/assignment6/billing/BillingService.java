@@ -27,7 +27,7 @@ public class BillingService {
     
 	public void addNewBilling(Billing billing) {
 		
-		Optional<Billing> billingById = billingRepository.findBillingById(billing.getId());
+		Optional<Billing> billingById = billingRepository.findBillingByCardNumber(billing.getCardNumber());
 		if (billingById.isPresent()) {
 			throw new IllegalStateException("Billing already exist!");
 		}
@@ -62,7 +62,7 @@ public class BillingService {
     	Billing billing = billingOptional.get();
     		
 		if (cardNumber != billing.getCardNumber()) {
-			Optional<Billing> billingO = billingRepository.findBillingByCarNumber(cardNumber);
+			Optional<Billing> billingO = billingRepository.findBillingByCardNumber(cardNumber);
 			if (billingO.isPresent()) {
 				throw new IllegalStateException("Card number is already taken!");
 			}
