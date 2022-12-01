@@ -133,7 +133,7 @@ public class Cart implements Serializable {
 	public void updatePrice() {
 		totalPay = BigDecimal.ZERO;
 		for (Product product : products) {
-			totalPay.add(product.getPrice());
+			totalPay = totalPay.add(product.getPrice());
 		}
 	}
 
