@@ -78,7 +78,7 @@ public class BillingService {
 
 
 	@Transactional
-    public Billing attachBillingToCustomer(Long customerId, Long billingId) {
+    public Customer attachBillingToCustomer(Long customerId, Long billingId) {
     	Optional<Customer> customerOptional = customerRepository.findCustomerById(customerId);
     	if (customerOptional.isEmpty()) {
     		throw new IllegalStateException("Customer does not exist!");
@@ -91,9 +91,10 @@ public class BillingService {
     	}
     	Billing billing = billingOptional.get();
 
-    	billing.setCustomer(customer);
+    	// billing.setCustomer(customer);
+		customer.setBilling(billing);
 
-		return billing;
+		return customer;
     }
 
 

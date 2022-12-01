@@ -4,14 +4,18 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import course.ensf607.assignment6.billing.Billing;
 import course.ensf607.assignment6.cart.Cart;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,16 +40,15 @@ public class Customer implements Serializable {
     @OneToMany(mappedBy="customer")
     private Set<Cart> history = new HashSet<>();
 
-//	1
-//     @OneToOne(cascade = CascadeType.ALL)
-//     @JoinColumn(name = "billing_id", referencedColumnName = "id")
-//     private Billing billing;
+	// 1
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "billing_id", referencedColumnName = "id")
+    private Billing billing;
      
-//     2
-//	@JsonIgnore
-//	@OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
-//	@PrimaryKeyJoinColumn
-//	private Billing billing;
+	// @JsonIgnore
+	// @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+	// @PrimaryKeyJoinColumn
+	// private Billing billing;
 	
 	
     

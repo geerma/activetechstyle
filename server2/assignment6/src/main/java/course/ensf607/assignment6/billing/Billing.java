@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import course.ensf607.assignment6.customer.Customer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,8 +36,9 @@ public class Billing implements Serializable {
         private Integer cvcNumber;
         
 //        1
-//        @OneToOne(mappedBy = "billing")	
-//        private Customer customer;
+	   @JsonIgnore
+       @OneToOne(mappedBy = "billing")	
+       private Customer customer;
 
 //        2
 //        @OneToOne
@@ -45,9 +48,9 @@ public class Billing implements Serializable {
         
         
 //        3
-        @OneToOne(cascade = CascadeType.ALL)
-        @JoinColumn(name = "customer_id", referencedColumnName = "id")
-        private Customer customer;
+        // @OneToOne(cascade = CascadeType.ALL)
+        // @JoinColumn(name = "customer_id", referencedColumnName = "id")
+        // private Customer customer;
 
         
 		public Billing(Long id, Long cardNumber, Date expiryDate, Integer cvcNumber) {
