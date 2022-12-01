@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { render } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../../Components/Header/Header";
 import "./cartpage.css";
@@ -7,6 +8,7 @@ const Cartpage = () => {
   const navigate = useNavigate();
 
   const [cartItems, setCartItems] = useState();
+  const [hasBilling, setHasBilling] = useState(false);
   const [cardNumber, setCardNumber] = useState();
   const [expiryDate, setExpiryDate] = useState();
   const [cvcNumber, setCvcNumber] = useState();
@@ -20,6 +22,8 @@ const Cartpage = () => {
       sessionStorage.getItem("customerId") == undefined
     ) {
       navigate("/login");
+    } else {
+      fetchBilling();
     }
 
     if (sessionStorage.getItem("cartItems") != undefined) {
@@ -35,8 +39,12 @@ const Cartpage = () => {
       console.log(purchaseCartList);
       purchase(purchaseCartList);
       sessionStorage.removeItem("cartItems");
+      if (hasBilling == false) {
+        addNewBilling();
+        // attachBillingToCustomer();
+      }
       window.alert("Purchase Successful");
-      navigate("/history");
+      // navigate("/history");
     }
   };
 
@@ -47,12 +55,58 @@ const Cartpage = () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        data: purchaseCartList
+        data: purchaseCartList,
       }),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => console.log("Purchase Log: ",data))
       .catch((error) => window.alert(error));
+  };
+
+  const addNewBilling = async () => {
+    await fetch(`${backend_endpoint}/api/v1/billing/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        cardNumber: "00875000112",
+        expiryDate: "2025-11-01",
+        cvcNumber: "183",
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("New Billing: ",data);
+      })
+      .catch((error) => window.alert(error));
+  };
+
+  const attachBillingToCustomer = async () => {
+    await fetch(`${backend_endpoint}/api/v1/billing/1/customer/${customerId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+    })
+    .then((res) => res.json())
+    // .then((data) => console.log(data))
+    .catch((error) => console.log(error));
+  };
+
+  const fetchBilling = async () => {
+    await fetch(`${backend_endpoint}/api/v1/customer/byId/${customerId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.billing != null) {
+          setHasBilling(true);
+          setCardNumber(data.billing.cardNumber);
+          setExpiryDate(data.billing.expiryDate);
+          setCvcNumber(data.billing.cvcNumber);
+          console.log(data.billing);
+        }
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const deleteBilling = async () => {
+    console.log("delete");
   };
 
   return (
@@ -64,20 +118,34 @@ const Cartpage = () => {
         {cartItems &&
           cartItems.map((item, index) => <div key={index}>{item}</div>)}
       </div>
-      <div className="billing_container">
-        <input
-          placeholder="Card Number"
-          onChange={(e) => setCardNumber(e.target.value)}
-        />
-        <input
-          placeholder="Expiry Date (YYYY-MM-DD)"
-          onChange={(e) => setExpiryDate(e.target.value)}
-        />
-        <input
-          placeholder="CVC Number"
-          onChange={(e) => setCvcNumber(e.target.value)}
-        />
-        <button onClick={() => handlePurchase()}>Purchase</button>
+      <div>
+        {hasBilling == false ? (
+          <div className="billing_container">
+            <h2>Billing Information:</h2>
+            <input
+              placeholder="Card Number"
+              onChange={(e) => setCardNumber(e.target.value)}
+            />
+            <input
+              placeholder="Expiry Date (YYYY-MM-DD)"
+              onChange={(e) => setExpiryDate(e.target.value)}
+            />
+            <input
+              placeholder="CVC Number"
+              onChange={(e) => setCvcNumber(e.target.value)}
+            />
+            <button onClick={() => handlePurchase()}>Purchase</button>
+          </div>
+        ) : (
+          <div className="billing_container">
+            <h2>Billing Information:</h2>
+            <p>You already have a credit card in our system</p>
+            <p>Ending in: {cardNumber.toString().slice(-4)}</p>
+            <p>Expiring in: {expiryDate}</p>
+            <button onClick={() => deleteBilling()}>Delete Billing</button>
+            <button onClick={() => handlePurchase()}>Purchase</button>
+          </div>
+        )}
       </div>
     </div>
   );

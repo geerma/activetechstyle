@@ -1,0 +1,40 @@
+.cart_container {
+    background: #dedfd7;
+    padding-top: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 1rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    border: solid black 0.5px;
+}
+
+.billing_container {
+    background: #dedfd7;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 1rem;
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid black 0.5px;
+
+    min-width: 300px;
+    width: 350px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+.billing_container > input {
+    margin: 0.2rem;
+    width: 15rem;
+}
+
+.billing_container > button {
+    width: 8rem;
+    margin-top: 0.2rem;
+}

@@ -59,7 +59,7 @@ const Loginpage = () => {
 
   const verifyRegister = (response) => {
     if (response.id != undefined) {
-      window.alert("You have successful registered.");
+      window.alert("You have successfully registered.");
       sessionStorage.setItem("customerId", response.id);
       navigate("/");
     } else {
