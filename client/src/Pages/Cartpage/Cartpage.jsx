@@ -11,7 +11,7 @@ const Cartpage = () => {
   const [expiryDate, setExpiryDate] = useState();
   const [cvcNumber, setCvcNumber] = useState();
 
-  const customerId = sessionStorage.getItem("customerId")
+  const customerId = sessionStorage.getItem("customerId");
   let purchaseCartList = [];
 
   useEffect(() => {
@@ -29,29 +29,27 @@ const Cartpage = () => {
 
   const handlePurchase = () => {
     if (cartItems == undefined) {
-      window.alert("Please add items to cart")
+      window.alert("Please add items to cart");
     } else {
       purchaseCartList = cartItems.map((item) => parseInt(item));
       console.log(purchaseCartList);
-      purchase();
+      purchase(purchaseCartList);
       sessionStorage.removeItem("cartItems");
-      window.alert("Purchase Successful")
-      // window.location.reload();
+      window.alert("Purchase Successful");
+      navigate("/history");
     }
   };
 
   const backend_endpoint = "http://localhost:8080";
 
-  const purchaseRequestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      "data": purchaseCartList
-    }),
-  };
-
-  const purchase = async () => {
-    await fetch(`${backend_endpoint}/api/v1/cart/customer/${customerId}`, purchaseRequestOptions)
+  const purchase = async (purchaseCartList) => {
+    await fetch(`${backend_endpoint}/api/v1/cart/customer/${customerId}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        data: purchaseCartList
+      }),
+    })
       .then((res) => res.json())
       .then((data) => console.log(data))
       .catch((error) => window.alert(error));
@@ -59,8 +57,6 @@ const Cartpage = () => {
 
   return (
     <div className="cartpage_container">
-      {/* {sessionStorage.setItem("cartItems", [4,5,6])} */}
-      {/* {console.log(cartItems)} */}
       <Header />
       <h1>Cart:</h1>
       <p>Cart Items</p>
