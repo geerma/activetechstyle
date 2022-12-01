@@ -20,7 +20,7 @@ export const Header = () => {
     } else {
       setToken(sessionStorage.getItem("customerId"));
     }
-    console.log(sessionStorage.getItem("customerId"))
+    console.log("Customer ID:",sessionStorage.getItem("customerId"))
   }, []);
 
   const handleSignout = () => {
@@ -32,7 +32,12 @@ export const Header = () => {
 
   const navigateToSearchPage = () => {
     if (search != undefined) {
-      navigate(`/search/${search}`);
+      if (window.location.pathname.match("search") != null) {
+        navigate(`/search/${search}`);
+        window.location.reload();
+      } else {
+        navigate(`/search/${search}`);
+      }
     } else {
       window.alert("Please enter text in the search bar.")
     }
