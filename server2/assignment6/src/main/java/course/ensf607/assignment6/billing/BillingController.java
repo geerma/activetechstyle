@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import course.ensf607.assignment6.customer.Customer;
-import course.ensf607.assignment6.customer.CustomerService;
-
 @RestController
 @RequestMapping(path = "api/v1/billing/")
 public class BillingController {
