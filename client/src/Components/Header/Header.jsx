@@ -3,6 +3,7 @@ import "./header.css";
 
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/activetechstylelogo.png";
+import historyLogo from "../../assets/historylogo.jpg"
 import cartLogo from "../../assets/cartlogo.jpg";
 import magnifyglassLogo from "../../assets/magnifyglass.jpg";
 
@@ -51,7 +52,8 @@ export const Header = () => {
           <button onClick={() => navigate("/login")}>Login / Signup</button>
         )}
 
-        <img img src={cartLogo} height={40} onClick={() => navigate("/cart")} />
+        <button><img img src={historyLogo} height={30} onClick={() => navigate("/history")} /></button>
+        <button><img img src={cartLogo} height={30} onClick={() => navigate("/cart")} /></button>
       </div>
     </div>
   );
