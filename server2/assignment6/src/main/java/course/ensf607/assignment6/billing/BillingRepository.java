@@ -13,6 +13,6 @@ public interface BillingRepository extends JpaRepository<Billing, Long> {
     Optional<Billing> findBillingById(Long id);
 	
 	@Query( value = "SELECT b FROM Billing b WHERE b.cardNumber = ?1") 
-    Optional<Billing> findBillingByCarNumber(Long cardNumber);
+    Optional<Billing> findBillingByCardNumber(Long cardNumber);
 
 }
