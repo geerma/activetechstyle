@@ -68,6 +68,11 @@ public class BillingController {
     
     @DeleteMapping(path="delete/{billingId}")
     public void deleteBillingById(@PathVariable Long billingId) {
+        Billing billing = billingService.getBillingById(billingId);
+        if (billing.getCustomer() != null) {
+        Customer customer = billing.getCustomer();
+        customer.setBilling(null);
+        }
         billingService.deleteBillingById(billingId);
     }
     
