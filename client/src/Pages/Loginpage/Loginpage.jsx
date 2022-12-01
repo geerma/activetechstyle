@@ -29,7 +29,7 @@ const Loginpage = () => {
 
   const verifyLogin = (response) => {
     if (response != null) {
-      localStorage.setItem("customerId", response.id);
+      sessionStorage.setItem("customerId", response.id);
       navigate("/");
     } else {
       window.alert("Invalid Username or Password");
@@ -54,12 +54,13 @@ const Loginpage = () => {
   };
 
   const verifyRegister = (response) => {
-    // if (response != null) {
-    //   window.alert("You have successful registered.")
-    //   Navigate("/login")
-    // } else {
-    //   window.alert("Please try again.")
-    // } 
+    if (response.id != undefined) {
+      window.alert("You have successful registered.");
+      sessionStorage.setItem("customerId", response.id);
+      navigate("/");
+    } else {
+      window.alert("User already exists. Please try again.")
+    } 
   }
 
   const loginSubmit = () => {
