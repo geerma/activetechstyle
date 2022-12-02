@@ -5,8 +5,7 @@ import Product from "../../Components/Product/Product";
 import "./stylepage.css";
 
 const Stylepage = () => {
-
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);
 
   const backend_endpoint = "http://localhost:8080";
 
@@ -21,13 +20,11 @@ const Stylepage = () => {
     fetchProducts();
   }, []);
 
-
-
   return (
     <div className="style_container">
       <Header />
       <div className="product_container">
-        <h2>Best Style Products</h2>
+        <h2>Style Products</h2>
         <div className="product_box">
           {products.map((product, index) => (
             <Product product={product} key={index} />

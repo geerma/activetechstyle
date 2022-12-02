@@ -1,5 +1,5 @@
 .footerinfo_container > ul {
-  padding-left: 1rem;
+  padding-left: 12rem;
 }
 
 .footerinfo_container > ul > li {
@@ -18,6 +18,11 @@
 .copyright_container {
   color: #aaa6a6;
   font-size: 12px;
-  padding-left: 1rem;
+  padding-left: 12rem;
   margin-left: 0.2rem;
+}
+
+.copyright_container > p {
+  padding-bottom: 0.8rem;
+  margin-bottom: 0px;
 }

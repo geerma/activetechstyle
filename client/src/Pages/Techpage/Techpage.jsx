@@ -24,7 +24,7 @@ const Techpage = () => {
     <div className="tech_container">
       <Header />
       <div className="product_container">
-        <h2>Best Tech Products</h2>
+        <h2>Tech Products</h2>
         <div className="product_box">
           {products.map((product, index) => (
             <Product product={product} key={index} />

@@ -4,9 +4,22 @@
 
 .productcomponent_container {
     border: black solid 1px;
-    padding: 0.2rem;
+    padding: 0.6rem;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0.2rem;
+
+    background-color: #ffffff;
+
+    color: #555555;
+    font-size: 14px;
+    font-weight: 750;
+}
+
+.productcomponent_container p {
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
     margin-top: 0.3rem;
     margin-bottom: 0.2rem;
 }

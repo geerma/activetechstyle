@@ -11,7 +11,6 @@ const Product = ({ product }) => {
 
   return (
     <div className="productcomponent_container">
-      <p>{product.name}</p>
       <img
         className="page_product_image"
         src={product.image}
@@ -19,6 +18,7 @@ const Product = ({ product }) => {
         height={200}
         onClick={() => navigateToProductPage(product.id)}
       />
+      <p>{product.name}</p>
       <p>${product.price}</p>
     </div>
   );

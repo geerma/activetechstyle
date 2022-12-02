@@ -24,7 +24,7 @@ const Activepage = () => {
     <div className="active_container">
       <Header />
       <div className="product_container">
-        <h2>Best Active Products</h2>
+        <h2>Active Products</h2>
         <div className="product_box">
           {products.map((product, index) => (
             <Product product={product} key={index} />
