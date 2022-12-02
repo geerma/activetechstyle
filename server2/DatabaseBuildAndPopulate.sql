@@ -109,7 +109,7 @@ VALUES
     
 	(1201, "Apple Mac-pro", "tech", 5, 2199.99, "https://multimedia.bbycastatic.ca/multimedia/products/500x500/157/15776/15776877.jpg", 10, "Vancouver", "Product with groundbreaking performance and amazing battery life."),
 	(1202, "Google Pixel 7", "tech", 4.9, 649.99, "https://multimedia.bbycastatic.ca/multimedia/products/500x500/164/16494/16494357.jpg", 10, "Calgary", "The photo you imagined in just a tap away."),
-   	(1203, "Microsoft surface", "active", 4.7, 769.99, "https://multimedia.bbycastatic.ca/multimedia/products/500x500/161/16157/16157710.jpg", 10, "Calgary", "Boasting a powerful 11th generation Intel processor with a 4.2GHz processor speed."),
+   	(1203, "Microsoft surface", "tech", 4.7, 769.99, "https://multimedia.bbycastatic.ca/multimedia/products/500x500/161/16157/16157710.jpg", 10, "Calgary", "Boasting a powerful 11th generation Intel processor with a 4.2GHz processor speed."),
 	(1204, "Samsung Galaxy S21", "tech", 4.6, 639.99, "https://multimedia.bbycastatic.ca/multimedia/products/500x500/164/16448/16448342.jpg", 10, "Calgary", "HyperFast processing speeds that lets you multitask seamlessly."),
 	(1205, "ASUS ROG Strix", "tech", 4.8, 1299.99, "https://multimedia.bbycastatic.ca/multimedia/products/500x500/159/15961/15961321.jpg", 10, "Calgary", "Game with a new level of speed and graphics."),
 

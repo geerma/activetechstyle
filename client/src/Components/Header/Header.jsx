@@ -34,7 +34,8 @@ export const Header = () => {
     if (search != undefined) {
       if (window.location.pathname.match("search") != null) {
         navigate(`/search/${search}`);
-        window.location.reload();
+        // window.location.reload();
+        navigate(0);
       } else {
         navigate(`/search/${search}`);
       }
