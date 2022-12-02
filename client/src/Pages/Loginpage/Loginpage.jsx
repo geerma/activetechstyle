@@ -94,9 +94,9 @@ const Loginpage = () => {
     <div className="loginpage_container">
       <Header />
       <div className="loginregister_container">
-        <h1>Login</h1>
+        <h2>Login / Register</h2>
         <button onClick={() => setIsRegistering(!isRegistering)}>
-          {isRegistering ? <div>Login</div> : <div>Register</div>}
+          {isRegistering ? <div>Click here to Login</div> : <div>Click here to Register</div>}
         </button>
         {isRegistering ? (
           <div className="register_container">
