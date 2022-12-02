@@ -29,9 +29,16 @@
     align-items: center;
 }
 
+.billing_container > label {
+    padding-top: 0.4rem;
+    font-size: 14px;
+}
+
 .billing_container > input {
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
     margin: 0.2rem;
-    width: 15rem;
+    width: 16rem;
 }
 
 .billing_container > button {

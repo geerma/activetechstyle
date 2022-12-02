@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Footer } from "../../Components/Footer/Footer";
 import { Header } from "../../Components/Header/Header";
 import Order from "../../Components/Order/Order";
 import "./orderhistorypage.css";
@@ -41,6 +42,9 @@ const Orderhistorypage = () => {
           {history &&
             history.map((order, index) => <Order order={order} key={index} />)}
       </div>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 };

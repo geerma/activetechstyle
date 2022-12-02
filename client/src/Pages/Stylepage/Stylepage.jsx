@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Footer } from "../../Components/Footer/Footer";
 import { Header } from "../../Components/Header/Header";
 import Product from "../../Components/Product/Product";
 import "./stylepage.css";
@@ -25,15 +26,17 @@ const Stylepage = () => {
   return (
     <div className="style_container">
       <Header />
-      <h1>Style</h1>
       <div className="product_container">
-        <p>Paragraph</p>
+        <h2>Best Style Products</h2>
         <div>
         {products.map((product, index) => (
             <Product product={product} key={index} />
           ))}
         </div>
       </div>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 };

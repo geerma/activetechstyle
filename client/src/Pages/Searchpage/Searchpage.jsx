@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { Footer } from "../../Components/Footer/Footer";
 import { Header } from "../../Components/Header/Header";
 import Product from "../../Components/Product/Product";
 import "./searchpage.css";
@@ -37,6 +38,9 @@ const Searchpage = () => {
             <Product product={product} key={index} />
           )) : (<h3>No Products Found</h3>)}
       </div>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 };
