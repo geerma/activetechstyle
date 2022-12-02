@@ -1,3 +1,5 @@
+-- Database Queries by Kendall, Mike, and Geer
+
 -- Part 1
 SHOW TABLES;
 
