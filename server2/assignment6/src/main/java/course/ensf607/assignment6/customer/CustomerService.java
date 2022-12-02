@@ -101,6 +101,21 @@ public class CustomerService {
 	}
 
 
+	@Transactional
+	public void updateCustomerName(Long id, String name) {
+
+		Optional<Customer> customerOptional = customerRepository.findCustomerById(id);
+    	if (customerOptional.isEmpty()) {
+    		throw new IllegalStateException("Customer does not exist!");
+    	}
+    	
+    	Customer customer = customerOptional.get();
+
+		customer.setName(name);
+
+	}
+
+
 
 
     

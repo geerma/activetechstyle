@@ -57,6 +57,14 @@ public class CustomerController {
     	
         customerService.updateCustomer(id, name, email, password);
     }
+
+    @PutMapping(path="{customerName}")
+    public void updateCustomerName(  
+    		@PathVariable("customerId") Long id,
+			@RequestParam(required= true) String name) {
+    	
+        customerService.updateCustomerName(id, name);
+    }
     
     
     
