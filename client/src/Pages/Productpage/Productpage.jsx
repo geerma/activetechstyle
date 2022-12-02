@@ -39,11 +39,13 @@ const Productpage = () => {
   return (
     <div className="productpage_container">
       <Header />
+      {console.log(product)}
       <div className="individualproduct_container">
-        <h1>{product.name}</h1>
+        <h2>{product.name}</h2>
         <img src={product.image} />
         <p>{product.description}</p>
-        <p>${product.price}</p>
+        <p>Rating: {product.rating} / 5</p>
+        <p>Price: ${product.price}</p>
         <div className="addtocart_button">
           <button onClick={() => addToCart()}>Add to Cart</button>
         </div>
