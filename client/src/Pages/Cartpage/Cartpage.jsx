@@ -68,7 +68,8 @@ const Cartpage = () => {
   const handleDelete = () => {
     deleteBilling();
     window.alert("Billing has been deleted");
-    window.location.reload();
+    // window.location.reload();
+    navigate("/");
   };
 
   const backend_endpoint = "http://localhost:8080";
