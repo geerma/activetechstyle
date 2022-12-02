@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import { Footer } from "../../Components/Footer/Footer";
 import { Header } from "../../Components/Header/Header";
 import "./loginpage.css";
 
@@ -149,6 +150,9 @@ const Loginpage = () => {
           </div>
         )}
       </div>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 };

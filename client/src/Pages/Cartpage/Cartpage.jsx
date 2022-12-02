@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { render } from "react-dom";
 import { useNavigate } from "react-router-dom";
+import { Footer } from "../../Components/Footer/Footer";
 import { Header } from "../../Components/Header/Header";
 import "./cartpage.css";
 
@@ -35,6 +36,8 @@ const Cartpage = () => {
   const handlePurchase = () => {
     if (cartItems == undefined) {
       window.alert("Please add items to cart");
+    } else if (cardNumber == undefined || expiryDate == undefined || cvcNumber == undefined) {
+      window.alert("Please input a card number, expiry date, or CVC Number");
     } else {
       purchaseCartList = cartItems.map((item) => parseInt(item));
       console.log(purchaseCartList);
@@ -134,14 +137,17 @@ const Cartpage = () => {
         {hasBilling == false ? (
           <div className="billing_container">
             <h2>Billing Information:</h2>
+            <label>Credit Card (ex. 123456789123):</label>
             <input
               placeholder="Card Number"
               onChange={(e) => setCardNumber(e.target.value)}
             />
+            <label>Expiry Date: (ex. 2026-01-15)</label>
             <input
               placeholder="Expiry Date (YYYY-MM-DD)"
               onChange={(e) => setExpiryDate(e.target.value)}
             />
+            <label>CVC Number: (ex. 143)</label>
             <input
               placeholder="CVC Number"
               onChange={(e) => setCvcNumber(e.target.value)}
@@ -159,6 +165,9 @@ const Cartpage = () => {
           </div>
         )}
       </div>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Footer } from "../../Components/Footer/Footer";
 import { Header } from "../../Components/Header/Header";
 import "./productpage.css";
 
@@ -47,6 +48,9 @@ const Productpage = () => {
           <button onClick={() => addToCart()}>Add to Cart</button>
         </div>
       </div>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 };
