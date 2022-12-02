@@ -61,7 +61,7 @@ const Homepage = () => {
       <div>Banner</div>
       <div className="product_container">
         <h2>Best Sellers</h2>
-        <div>
+        <div className="product_box">
           {products.map((product, index) => (
             <Product product={product} key={index} />
           ))}

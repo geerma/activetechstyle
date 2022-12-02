@@ -10,7 +10,7 @@ const Product = ({ product }) => {
   };
 
   return (
-    <div>
+    <div className="productcomponent_container">
       <p>{product.name}</p>
       <img
         className="page_product_image"

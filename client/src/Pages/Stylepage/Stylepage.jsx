@@ -28,8 +28,8 @@ const Stylepage = () => {
       <Header />
       <div className="product_container">
         <h2>Best Style Products</h2>
-        <div>
-        {products.map((product, index) => (
+        <div className="product_box">
+          {products.map((product, index) => (
             <Product product={product} key={index} />
           ))}
         </div>
