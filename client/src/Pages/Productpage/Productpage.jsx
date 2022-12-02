@@ -31,6 +31,7 @@ const Productpage = () => {
     }
     cartList.push(params.itemId);
     sessionStorage.setItem("cartItems", cartList);
+    window.alert("Product has been added to cart")
     console.log(sessionStorage.getItem("cartItems"));
   };
 

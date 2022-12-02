@@ -14,6 +14,7 @@ const Cartpage = () => {
   const [cvcNumber, setCvcNumber] = useState();
   
   const customerId = sessionStorage.getItem("customerId");
+  const [fetchedBillingId, setFetchedBillingId] = useState();
   let purchaseCartList = [];
 
   useEffect(() => {
@@ -43,9 +44,15 @@ const Cartpage = () => {
         addNewBilling();
       }
       window.alert("Purchase Successful");
-      // navigate("/history");
+      navigate("/history");
     }
   };
+
+  const handleDelete = () => {
+    deleteBilling();
+    window.alert("Billing has been deleted");
+    window.location.reload();
+  }
 
   const backend_endpoint = "http://localhost:8080";
 
@@ -96,6 +103,7 @@ const Cartpage = () => {
       .then((data) => {
         if (data.billing != null) {
           setHasBilling(true);
+          setFetchedBillingId(data.billing.id);
           setCardNumber(data.billing.cardNumber);
           setExpiryDate(data.billing.expiryDate);
           setCvcNumber(data.billing.cvcNumber);
@@ -106,7 +114,11 @@ const Cartpage = () => {
   };
 
   const deleteBilling = async () => {
-    console.log("delete");
+    await fetch(`${backend_endpoint}/api/v1/billing/delete/${fetchedBillingId}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    })
+    .catch((error) => console.log(error));
   };
 
   return (
@@ -142,7 +154,7 @@ const Cartpage = () => {
             <p>You already have a credit card in our system</p>
             <p>Ending in: {cardNumber.toString().slice(-4)}</p>
             <p>Expiring in: {expiryDate}</p>
-            <button onClick={() => deleteBilling()}>Delete Billing</button>
+            <button onClick={() => handleDelete()}>Delete Billing</button>
             <button onClick={() => handlePurchase()}>Purchase</button>
           </div>
         )}
