@@ -37,7 +37,6 @@ const Orderhistorypage = () => {
       {console.log(history)}
       <Header />
       <h1>Orders:</h1>
-      <p>Order History</p>
       <div className="orderhistory_container">
           {history &&
             history.map((order, index) => <Order order={order} key={index} />)}

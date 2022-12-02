@@ -45,3 +45,38 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image > img {
+    max-width: 1920px;
+    margin-bottom: 0.5rem;;
+}
+
+@media screen and (max-width: 1680px) {
+    .image > img {
+        width: 1680px;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .image > img {
+        width: 1280px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .image > img {
+        width: 992px;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .image > img {
+        width: 680px;
+    }
+}

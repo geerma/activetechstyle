@@ -1,47 +1,71 @@
+h1 {
+    margin-left: 12rem;
+}
+
 .cart_container {
-    background: #dedfd7;
-    padding-top: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-bottom: 1rem;
-    margin-left: 5rem;
-    margin-right: 5rem;
-    border: solid black 0.5px;
+  background: #dedfd7;
+  padding-top: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 1rem;
+  margin-left: 12rem;
+  margin-right: 12rem;
+  border: solid black 0.5px;
+}
+
+.cart_individualproduct_container {
+  margin-top: 1px;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.cart_individualproduct_container > img {
+  margin-top: 1rem;
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+  border: solid 2px rgb(79, 82, 85);
+
+  cursor: pointer;
+}
+
+.cart_individualproduct_container > p {
+  margin-left: 0.8rem;
 }
 
 .billing_container {
-    background: #dedfd7;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-bottom: 1rem;
-    margin-top: 2rem;
-    margin-left: auto;
-    margin-right: auto;
-    border: solid black 0.5px;
+  background: #dedfd7;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 1rem;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  border: solid black 0.5px;
 
-    min-width: 300px;
-    width: 350px;
+  min-width: 300px;
+  width: 350px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    justify-items: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
 }
 
 .billing_container > label {
-    padding-top: 0.4rem;
-    font-size: 14px;
+  padding-top: 0.4rem;
+  font-size: 14px;
 }
 
 .billing_container > input {
-    padding-top: 0.2rem;
-    padding-bottom: 0.2rem;
-    margin: 0.2rem;
-    width: 16rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  margin: 0.2rem;
+  width: 16rem;
 }
 
 .billing_container > button {
-    width: 8rem;
-    margin-top: 0.2rem;
+  width: 8rem;
+  margin-top: 0.2rem;
 }

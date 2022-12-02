@@ -1,3 +1,39 @@
 .order_container {
-    border: solid 1px rgb(0, 0, 0);
+  border: solid 1px rgb(0, 0, 0);
+}
+
+.order_info_container {
+  display: flex;
+  flex-direction: row;
+}
+
+.order_info_container > h2 {
+  font-size: 16px;
+  margin-left: 2rem;
+  color: #565959;
+}
+
+.order_info_container > h2:nth-child(2) {
+  margin-left: 3rem;
+}
+
+.order_individualproduct_container {
+  border-top: solid 1px rgb(112, 112, 112);
+  margin-top: 1px;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.order_individualproduct_container > img {
+  margin-top: 1rem;
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+  border: solid 2px rgb(79, 82, 85);
+
+  cursor: pointer;
+}
+
+.order_individualproduct_container > p {
+  margin-left: 0.8rem;
 }

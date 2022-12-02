@@ -1,19 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { render } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import { Footer } from "../../Components/Footer/Footer";
 import { Header } from "../../Components/Header/Header";
+import Order from "../../Components/Order/Order";
 import "./cartpage.css";
 
 const Cartpage = () => {
   const navigate = useNavigate();
+  const effectRan = useRef(false);
+
+  const [cartProducts, setCartProducts] = useState([]);
 
   const [cartItems, setCartItems] = useState();
   const [hasBilling, setHasBilling] = useState(false);
   const [cardNumber, setCardNumber] = useState();
   const [expiryDate, setExpiryDate] = useState();
   const [cvcNumber, setCvcNumber] = useState();
-  
+
   const customerId = sessionStorage.getItem("customerId");
   const [fetchedBillingId, setFetchedBillingId] = useState();
   let purchaseCartList = [];
@@ -28,15 +32,25 @@ const Cartpage = () => {
       fetchBilling();
     }
 
+    if (effectRan.current) return;
+
     if (sessionStorage.getItem("cartItems") != undefined) {
       setCartItems(sessionStorage.getItem("cartItems").split(","));
+      const cart = sessionStorage.getItem("cartItems").split(",");
+      cart.forEach((itemId) => fetchProducts(itemId));
     }
+
+    return () => (effectRan.current = true);
   }, []);
 
   const handlePurchase = () => {
     if (cartItems == undefined) {
       window.alert("Please add items to cart");
-    } else if (cardNumber == undefined || expiryDate == undefined || cvcNumber == undefined) {
+    } else if (
+      cardNumber == undefined ||
+      expiryDate == undefined ||
+      cvcNumber == undefined
+    ) {
       window.alert("Please input a card number, expiry date, or CVC Number");
     } else {
       purchaseCartList = cartItems.map((item) => parseInt(item));
@@ -55,9 +69,16 @@ const Cartpage = () => {
     deleteBilling();
     window.alert("Billing has been deleted");
     window.location.reload();
-  }
+  };
 
   const backend_endpoint = "http://localhost:8080";
+
+  const fetchProducts = async (itemId) => {
+    await fetch(`${backend_endpoint}/api/v1/product/byId/${itemId}`)
+      .then((res) => res.json())
+      .then((data) => setCartProducts((cart) => [...cart, data]))
+      .catch((error) => console.log(error));
+  };
 
   const purchase = async (purchaseCartList) => {
     await fetch(`${backend_endpoint}/api/v1/cart/customer/${customerId}`, {
@@ -68,7 +89,7 @@ const Cartpage = () => {
       }),
     })
       .then((res) => res.json())
-      .then((data) => console.log("Purchase Log: ",data))
+      .then((data) => console.log("Purchase Log: ", data))
       .catch((error) => window.alert(error));
   };
 
@@ -84,20 +105,23 @@ const Cartpage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("New Billing: ",data);
+        console.log("New Billing: ", data);
         attachBillingToCustomer(data.id.toString());
       })
       .catch((error) => window.alert(error));
   };
 
   const attachBillingToCustomer = async (billingId) => {
-    await fetch(`${backend_endpoint}/api/v1/billing/${billingId}/customer/${customerId}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-    })
-    .then((res) => res.json())
-    .then((data) => console.log("Attach Billing",data))
-    .catch((error) => console.log(error));
+    await fetch(
+      `${backend_endpoint}/api/v1/billing/${billingId}/customer/${customerId}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => console.log("Attach Billing", data))
+      .catch((error) => console.log(error));
   };
 
   const fetchBilling = async () => {
@@ -117,21 +141,34 @@ const Cartpage = () => {
   };
 
   const deleteBilling = async () => {
-    await fetch(`${backend_endpoint}/api/v1/billing/delete/${fetchedBillingId}`, {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-    })
-    .catch((error) => console.log(error));
+    await fetch(
+      `${backend_endpoint}/api/v1/billing/delete/${fetchedBillingId}`,
+      {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      }
+    ).catch((error) => console.log(error));
+  };
+
+  const navigateToProductPage = (itemId) => {
+    navigate(`/product/${itemId}`);
   };
 
   return (
     <div className="cartpage_container">
       <Header />
-      <h1>Cart:</h1>
-      <p>Cart Items</p>
+      {console.log(cartProducts)}
+      <h1 id="h1">Cart:</h1>
       <div className="cart_container">
-        {cartItems &&
-          cartItems.map((item, index) => <div key={index}>{item}</div>)}
+      {cartProducts &&
+          cartProducts.map((product, index) => (
+            <div className = "cart_individualproduct_container" key={index}>
+              <img width={125} src={product.image} onClick={() => navigateToProductPage(product.id)} />
+              <p>{product.name}</p>
+              <p>|</p>
+              <p>${product.price}</p>
+            </div>
+          ))}
       </div>
       <div>
         {hasBilling == false ? (

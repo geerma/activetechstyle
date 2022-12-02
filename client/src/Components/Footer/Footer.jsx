@@ -21,6 +21,9 @@ export const Footer = () => {
         </ul>
       </div>
       <div className="copyright_container">
+        <a href="https://www.vecteezy.com/free-vector/pink">
+          Banner Image: Pink Vectors by Vecteezy
+        </a>
         <p>
           Copyright © ActiveTechStyle. All Rights Reserved. Design by Geer,
           Kendall & Mike

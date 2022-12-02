@@ -26,3 +26,8 @@
   padding-bottom: 0.8rem;
   margin-bottom: 0px;
 }
+
+a:link {
+  text-decoration: none;
+  font-size: 12px;
+}
