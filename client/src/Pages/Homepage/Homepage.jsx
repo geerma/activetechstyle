@@ -51,6 +51,13 @@ const Homepage = () => {
       .catch((error) => console.log(error));
   };
 
+  const sortByPrice = async(ascdesc) => {
+    await fetch(`${backend_endpoint}/api/v1/product/all/price/${ascdesc}`)
+      .then((res) => res.json())
+      .then((data) => setProducts(data))
+      .catch((error) => console.log(error));
+  }
+
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -61,6 +68,8 @@ const Homepage = () => {
       <div>Banner</div>
       <div className="product_container">
         <h2>Best Sellers</h2>
+        <button onClick = {() => sortByPrice("asc")}>Sort By Price (Ascending)</button>
+        <button onClick = {() => sortByPrice("desc")}>Sort By Price (Descending)</button>
         <div className="product_box">
           {products.map((product, index) => (
             <Product product={product} key={index} />
