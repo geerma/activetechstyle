@@ -5,10 +5,12 @@
 .productcomponent_container {
     border: black solid 1px;
     padding: 0.6rem;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-    margin-top: 0.3rem;
-    margin-bottom: 0.2rem;
+    margin-left: 8rem;
+    margin-right: 8rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    min-width: 300px;
 
     background-color: #ffffff;
 

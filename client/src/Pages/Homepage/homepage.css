@@ -73,6 +73,10 @@
     .image > img {
         width: 992px;
     }
+
+    .product_container {
+        background: #FFFFFF;
+    }
 }
 
 @media screen and (max-width: 680px) {
