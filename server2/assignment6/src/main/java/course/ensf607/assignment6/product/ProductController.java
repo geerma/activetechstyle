@@ -47,7 +47,15 @@ public class ProductController {
     public List<Product> getAllProducts () {
     	return productService.getAllProducts();
     }
-    
+
+    @GetMapping(path= "all/price/{ascdesc}")
+    public List<Product> getAllProductsSortByPrice(@PathVariable String ascdesc) {
+      if (ascdesc.equals("asc")) {
+        return productService.getAllProductsSortByPriceAsc();
+      } else {
+        return productService.getAllProductsSortByPriceDesc();
+      }
+    }
     
     @PostMapping
     public void registerNewProduct(@RequestBody Product product) {

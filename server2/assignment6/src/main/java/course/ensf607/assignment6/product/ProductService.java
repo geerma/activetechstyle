@@ -48,6 +48,13 @@ public class ProductService {
 		return productRepository.findAll();
 	}
 
+	public List<Product> getAllProductsSortByPriceAsc() {
+		return productRepository.findProductSortByPriceAsc();
+	}
+
+	public List<Product> getAllProductsSortByPriceDesc() {
+		return productRepository.findProductSortByPriceDesc();
+	}
    
    @Transactional
 	public void decreaseStockQuantity(Long id, Integer n) {

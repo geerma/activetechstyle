@@ -18,5 +18,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	
 	@Query( value = "SELECT p FROM Product p WHERE p.name LIKE ?1 ORDER bY name") 
     List<Product> findProductByName(String name);
-	
+
+	@Query( value = "SELECT p FROM Product p ORDER BY PRICE ASC") 
+	List<Product> findProductSortByPriceAsc();
+
+	@Query( value = "SELECT p FROM Product p ORDER BY PRICE DESC") 
+	List<Product> findProductSortByPriceDesc();
+
 }
