@@ -9,7 +9,6 @@ create database ensf607; -- Creates the new database
 -- -- grant all on ensf607.* to 'postgress'@'localhost'; -- Gives all privileges to postgress
 
 use ensf607;
-SHOW TABLES;
 SELECT DATE_FORMAT("2017-06-15", "%Y");
 
 drop table if exists billing;
@@ -80,21 +79,21 @@ FOREIGN KEY (billing_id) REFERENCES billing(id);
 
 INSERT INTO ensf607.billing (id, card_number, cvc_number, expiry_date)
 VALUES
-	(100, 123456789000, 111, "2022-12-12"),
-    (101, 123456789011, 123, "2023-12-12"),
-    (102, 123456789011, 123, "2023-12-12");
+	(10000, 123456789000, 111, "2022-12-12"),
+    (10100, 123456789011, 123, "2023-12-12"),
+    (10200, 123456789011, 123, "2023-12-12");
 
 INSERT INTO ensf607.customer (id, email, name, password, billing_id)
 VALUES
-	(1, "josh.price@gmail.com", "Josh Price", "mypass", 100),
-    (2, "The_Hulk@live.com", "Bruce Banner", "hulkSmash", 101),
-    (3, "test@test.com", "Test Name", "test", 102);
+	(501, "josh.price@gmail.com", "Josh Price", "mypass", 10000),
+    (502, "The_Hulk@live.com", "Bruce Banner", "hulkSmash", 10100),
+    (503, "test@test.com", "Test Name", "test", 10200);
     
 INSERT INTO ensf607.cart (id, purchase_date, status, total_pay, customer_id)
 VALUES
-	(50, "2022-12-11", "True", 120.99, 1),
-    (51, "2022-12-10", "True", 66.98, 2),
-    (52, "2022-12-19", "True", 239.99, 3);
+	(5050, "2022-12-11", "True", 120.99, 501),
+    (5051, "2022-12-10", "True", 66.98, 502),
+    (5052, "2022-12-19", "True", 239.99, 503);
     
 INSERT INTO ensf607.product (id, name, category, rating, price, image, stock_quantity, stock_location, description)
 VALUES 
@@ -117,11 +116,12 @@ VALUES
     
 INSERT INTO ensf607.cart_contents (cart_id, product_id)
 VALUES
-	(50, 1004),
-    (51, 1001),
-    (51, 1002),
-    (52, 1104);
+	(5050, 1004),
+    (5051, 1001),
+    (5051, 1002),
+    (5052, 1104);
     
+SHOW TABLES;
 SELECT * FROM billing;
 SELECT * FROM cart;
 SELECT * FROM customer;
