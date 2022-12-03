@@ -35,10 +35,37 @@ JOIN billing as B
 	ON c.billing_id = b.id;
     
 -- Part 6
-UPDATE customer
-SET name = "Dan Shields"
-WHERE id = 501;
+DROP TRIGGER IF EXISTS update_price_trigger;
+DELIMITER $$
+CREATE TRIGGER update_price_trigger  
+BEFORE UPDATE
+ON product
+FOR EACH ROW
+BEGIN
+IF (NEW.price < 0) THEN
+	SET NEW.price = ABS(NEW.price);
+	END IF;
+END$$
+DELIMITER ;
+
+UPDATE product
+SET price = -99.99
+WHERE id = 1001;
+
+-- SELECT * FROM product WHERE id = 1001;
 
 -- Part 7
-DELETE FROM cart_contents
-WHERE cart_id = 5050;
+DROP TRIGGER IF EXISTS delete_cart_trigger;
+DELIMITER $$
+CREATE TRIGGER delete_cart_trigger  
+BEFORE DELETE
+ON cart
+FOR EACH ROW
+BEGIN
+		DELETE FROM cart_contents 
+        WHERE cart_id = OLD.id;
+END$$
+DELIMITER ;
+
+DELETE FROM cart
+WHERE id = 5052;
