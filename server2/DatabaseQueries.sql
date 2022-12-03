@@ -52,7 +52,7 @@ UPDATE product
 SET price = -99.99
 WHERE id = 1001;
 
--- SELECT * FROM product WHERE id = 1001;
+SELECT * FROM product WHERE id = 1001;
 
 -- Part 7
 DROP TRIGGER IF EXISTS delete_cart_trigger;
@@ -67,5 +67,9 @@ BEGIN
 END$$
 DELIMITER ;
 
+SELECT * FROM cart_contents WHERE cart_id=5052;
+
 DELETE FROM cart
 WHERE id = 5052;
+
+SELECT * FROM cart_contents WHERE cart_id=5052;

@@ -1,5 +1,10 @@
 -- Database builder and populator by Kendall, Mike, and Geer
 
+-- This file is for the requirement in the ENSF 608 project to hand in a SQL that builds and populates the database.
+-- Note that our project used Spring to automatically creates for use in our web application.
+-- This .sql file MIMICS the same column structure used in Spring.
+-- Running all these lines will work, but some features may not work as intended since our project was done initially using Spring. 
+
 drop database if exists ensf607;
 create database ensf607; -- Creates the new database
 
