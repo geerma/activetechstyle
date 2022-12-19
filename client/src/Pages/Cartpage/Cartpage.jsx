@@ -161,15 +161,22 @@ const Cartpage = () => {
       {console.log(cartProducts)}
       <h1 id="h1">Cart:</h1>
       <div className="cart_container">
-      {cartProducts &&
+        {cartProducts && cartProducts.length != 0 ? (
           cartProducts.map((product, index) => (
-            <div className = "cart_individualproduct_container" key={index}>
-              <img width={125} src={product.image} onClick={() => navigateToProductPage(product.id)} />
+            <div className="cart_individualproduct_container" key={index}>
+              <img
+                width={125}
+                src={product.image}
+                onClick={() => navigateToProductPage(product.id)}
+              />
               <p>{product.name}</p>
               <p>|</p>
               <p>${product.price}</p>
             </div>
-          ))}
+          ))
+        ) : (
+          <h3>No Cart Items Found</h3>
+        )}
       </div>
       <div>
         {hasBilling == false ? (

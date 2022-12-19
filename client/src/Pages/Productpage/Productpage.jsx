@@ -8,7 +8,7 @@ const Productpage = () => {
   const [product, setProduct] = useState({});
 
   const params = useParams();
-  
+
   let cartList = [];
 
   const backend_endpoint = "http://localhost:8080";
@@ -30,9 +30,13 @@ const Productpage = () => {
     } else {
       cartList = [];
     }
+    if (cartList.includes(params.itemId)) {
+      window.alert("You cannot add duplicate items to the cart");
+      return;
+    }
     cartList.push(params.itemId);
     sessionStorage.setItem("cartItems", cartList);
-    window.alert("Product has been added to cart")
+    window.alert("Product has been added to cart");
     console.log(sessionStorage.getItem("cartItems"));
   };
 

@@ -38,8 +38,11 @@ const Orderhistorypage = () => {
       <Header />
       <h1>Orders:</h1>
       <div className="orderhistory_container">
-          {history &&
-            history.map((order, index) => <Order order={order} key={index} />)}
+        {history && history.length != 0 ? (
+          history.map((order, index) => <Order order={order} key={index} />)
+        ) : (
+          <h3>No Orders Found</h3>
+        )}
       </div>
       <footer>
         <Footer />

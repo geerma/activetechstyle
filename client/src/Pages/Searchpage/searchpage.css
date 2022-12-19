@@ -1,0 +1,29 @@
+.searchpage_container {
+  background: #ffffff;
+  /* background-image: linear-gradient(135deg, #F5E3E6, #D9E4F5); */
+}
+
+.product_container {
+  /* background: #dedfd7; */
+  padding-top: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 1rem;
+  margin-left: 12rem;
+  margin-right: 12rem;
+
+  text-align: center;
+
+  color: #303030;
+  background-image: linear-gradient(135deg, #f5e3e6, #d9e4f5);
+}
+
+.product_box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
