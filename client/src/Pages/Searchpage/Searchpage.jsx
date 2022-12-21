@@ -10,7 +10,7 @@ const Searchpage = () => {
 
   const [products, setProducts] = useState([]);
 
-  const backend_endpoint = "http://localhost:8080";
+  const backend_endpoint = import.meta.env.VITE_BACKEND_URL;
 
   const fetchSearchProducts = async () => {
     await fetch(`${backend_endpoint}/api/v1/product/byName/${params.query}`)

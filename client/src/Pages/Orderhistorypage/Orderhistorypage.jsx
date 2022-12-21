@@ -10,7 +10,7 @@ const Orderhistorypage = () => {
 
   const [history, setHistory] = useState();
 
-  const backend_endpoint = "http://localhost:8080";
+  const backend_endpoint = import.meta.env.VITE_BACKEND_URL;
 
   const customerId = sessionStorage.getItem("customerId");
 

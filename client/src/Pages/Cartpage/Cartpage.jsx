@@ -72,7 +72,7 @@ const Cartpage = () => {
     navigate("/");
   };
 
-  const backend_endpoint = "http://localhost:8080";
+  const backend_endpoint = import.meta.env.VITE_BACKEND_URL;
 
   const fetchProducts = async (itemId) => {
     await fetch(`${backend_endpoint}/api/v1/product/byId/${itemId}`)

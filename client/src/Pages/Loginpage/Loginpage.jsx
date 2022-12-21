@@ -17,7 +17,7 @@ const Loginpage = () => {
 
   const navigate = useNavigate();
 
-  const backend_endpoint = "http://localhost:8080";
+  const backend_endpoint = import.meta.env.VITE_BACKEND_URL;
 
   const login = async () => {
     await fetch(

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: course.ensf607.assignment6.Assignment6ApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.372 s - in course.ensf607.assignment6.Assignment6ApplicationTests

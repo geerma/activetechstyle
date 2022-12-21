@@ -7,7 +7,7 @@ import "./activepage.css";
 const Activepage = () => {
   const [products, setProducts] = useState([]);
 
-  const backend_endpoint = "http://localhost:8080";
+  const backend_endpoint = import.meta.env.VITE_BACKEND_URL;
 
   const fetchProducts = async () => {
     await fetch(`${backend_endpoint}/api/v1/product/byCategory/active/`)
