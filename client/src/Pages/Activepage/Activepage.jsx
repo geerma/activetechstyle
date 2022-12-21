@@ -12,7 +12,7 @@ const Activepage = () => {
   const fetchProducts = async () => {
     await fetch(`${backend_endpoint}/api/v1/product/byCategory/active/`)
       .then((res) => res.json())
-      .then((data) => setProducts(data))
+      .then((data) => console.log(data))
       .catch((error) => console.log(error));
   };
 
