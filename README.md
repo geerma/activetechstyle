@@ -1,4 +1,4 @@
-# Project: Group 11
+# Project: Active Tech Style
 ## By: Geer Ma, Kendall Reed, Mohamad Ebrahimi
 
 ## Steps to Run
