@@ -197,7 +197,6 @@ public class Cart implements Serializable {
 //
 //
 //	public void emptyCart() {
-//		// TODO Auto-generated method stub
 //		
 //	}
 //

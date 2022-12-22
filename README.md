@@ -1,38 +1,53 @@
 # Project: Active Tech Style
-## By: Geer Ma, Kendall Reed, Mohamad Ebrahimi
 
-## Steps to Run
+This project is a full-stack e-commerce web application that uses React.js, Java, Spring Boot, MySQL and is deployed on AWS.
 
-- Start a local mySQL server and populate the database (use testerDatabase.sql and run the "INSERT INTO ensf607.product" lines only), then run the Assignment6Application.java to start the server. See next bullet for more information on starting the local mySQL server.
+------
 
-- NOTES: If it is the first time running the server, you would need to create a user. Run the following code within MySQL workbench.
+## Try it out
+
+The website is deployed [here](https://activetechstyle.vercel.app/). 
+
+The server is hosted on AWS Elastic Beanstalk which is connected to an Amazon Relational Database Service (RDS) instance.
+
+## Technologies Used
+
+- React.js
+- Java
+- Spring Boot
+- MySQL
+- AWS (Elastic Beanstalk, RDS, ACM, Route 53)
+
+## Steps to Run Locally
+
+**Backend**
+
+- Set up the database by starting a MySQL server.
+- Modify the file *server2/assignment6/src/main/resources/application.properties* (see instructions below)
+
+Uncomment this line:
 ```
-drop database if exists ensf607;
-create database ensf607; -- Creates the new database
-
--- drop user if exists 'springuser'@'%';
--- flush privileges;
-create user 'springuser'@'%' identified by 'asdfghjkl'; -- Creates the user
-grant all on ensf607.* to 'springuser'@'%'; -- Gives all privileges to the new user on the newly created database
-
--- grant all on ensf607.* to 'postgress'@'localhost'; -- Gives all privileges to postgress
-
-use ensf607;
+# Uncomment this out to test on local database
+#spring.datasource.url=jdbc:mysql://${MYSQL_HOST:localhost}:3306/activetechstyle?createDatabaseIfNotExist=true
 ```
 
-Afterwords, you simply need to populate the database past entry 16:
+Comment out this line:
 ```
-INSERT INTO ensf607.product (id, name, category, rating, price, image, stock_quantity, stock_location, description)
-VALUES 
-    (1001, "White Shirt", "style", 5, 30.99, "https://d1flfk77wl2xk4.cloudfront.net/Assets/GalleryImage/57/666/L_g0136266657.jpg", 10, "Calgary", "Wear the coolest shirt you'll ever own."),
-    (1002, "Black", "style", 5, 35.99, "https://d1flfk77wl2xk4.cloudfront.net/Assets/GalleryImage/58/666/L_g0136266658.jpg", 10, "Calgary", "Soft and fashionable shirt."),
-    ...
-    ...
-*** Execute the values to be inserted as well***
- ```
+# Comment this out to test on local database, after uncommenting above
+spring.datasource.url=jdbc:mysql://${DB_URL}:3306/ebdb?createDatabaseIfNotExist=true
+```
 
-- Then cd into client and type
+Insert Database Username and Password:
+```
+spring.datasource.username=${DB_USER}
+spring.datasource.password=${DB_PASSWORD}
+```
 
-```npm install```
+**Frontend**
 
-```npm run dev```
+- To start the frontend, cd into client and type:
+
+```
+npm install // Installs all dependencies
+npm run dev // Run the client
+```

@@ -1,5 +1,7 @@
 .order_container {
   border: solid 1px rgb(0, 0, 0);
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 .order_info_container {
