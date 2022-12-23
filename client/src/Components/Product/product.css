@@ -3,14 +3,14 @@
 }
 
 .productcomponent_container {
-    border: black solid 1px;
-    padding: 0.6rem;
+    border: black solid 0px;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
     margin-top: 0.3rem;
     margin-bottom: 0.2rem;
     
-    min-width: 300px;
+    padding: 1rem;
+    min-width: 200px;
 
     background-color: #ffffff;
 
@@ -28,4 +28,8 @@
 
 .productcomponent_container > img {
     margin-top: 0.5rem;
+
+    /* For Brown Coat */
+    object-fit: cover;
+    object-position: 42% 0;
 }

@@ -14,7 +14,7 @@ const Product = ({ product }) => {
       <img
         className="page_product_image"
         src={product.image}
-        width={215}
+        width={200}
         height={200}
         onClick={() => navigateToProductPage(product.id)}
       />
