@@ -4,20 +4,23 @@ import "./header.css";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/activetechstylelogo.png";
 
-// import historyLogo from "../../assets/historylogo.jpg"
-// import cartLogo from "../../assets/cartlogo.jpg";
-// import magnifyglassLogo from "../../assets/magnifyglass.jpg";
-
 import SearchIcon from '@mui/icons-material/Search';
 import HistoryIcon from '@mui/icons-material/History';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
+/**
+ * Navbar/Header. Contains the logo, categories, login, history, and cart buttons
+ * @returns 
+ */
 export const Header = () => {
   const navigate = useNavigate();
 
-  const [token, setToken] = useState("null");
-  const [search, setSearch] = useState();
+  const [token, setToken] = useState("null"); // handle authentication via pseudo-token
+  const [search, setSearch] = useState(); // variable for the search bar
 
+  /**
+   * UseEffect to check if user is logged in / authenticated
+   */
   useEffect(() => {
     if (sessionStorage.getItem("customerId") == null) {
       sessionStorage.setItem("customerId", "null");
@@ -27,6 +30,9 @@ export const Header = () => {
     }
   }, []);
 
+  /**
+   * Function to handle signout after clicking the sign-out button
+   */
   const handleSignout = () => {
     sessionStorage.setItem("customerId", "null");
     setToken(sessionStorage.getItem("customerId"));
@@ -34,11 +40,15 @@ export const Header = () => {
     window.location.reload();
   }
 
+  /**
+   * Navigate to search page after clicking the search button.
+   * Checks if search input is empty.
+   */
   const navigateToSearchPage = () => {
     if (search != undefined) {
       if (window.location.pathname.match("search") != null) {
         navigate(`/search/${search}`);
-        window.location.reload();
+        window.location.reload(); // If on the search page already, reload to refresh the search
       } else {
         navigate(`/search/${search}`);
       }
@@ -71,11 +81,9 @@ export const Header = () => {
         )}
 
         <button onClick={() => navigate("/history")}>
-          {/* <img img src={historyLogo} height={30} />*/}
           <HistoryIcon />
         </button>
         <button onClick={() => navigate("/cart")}>
-          {/* <img img src={cartLogo} height={30}*/}
           <ShoppingCartIcon />
         </button>
       </div>

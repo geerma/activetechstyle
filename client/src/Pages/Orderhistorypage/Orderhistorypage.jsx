@@ -5,6 +5,10 @@ import { Header } from "../../Components/Header/Header";
 import Order from "../../Components/Order/Order";
 import "./orderhistorypage.css";
 
+/**
+ * Page containing the order history of the customer
+ * @returns 
+ */
 const Orderhistorypage = () => {
   const navigate = useNavigate();
 
@@ -14,6 +18,9 @@ const Orderhistorypage = () => {
 
   const customerId = sessionStorage.getItem("customerId");
 
+  /**
+   * Fetch customer history
+   */
   const fetchHistory = async () => {
     await fetch(`${backend_endpoint}/api/v1/customer/byId/${customerId}`)
       .then((res) => res.json())

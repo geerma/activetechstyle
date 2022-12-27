@@ -2,6 +2,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./product.css";
 
+/**
+ * Component for the products displayed to the customer on the home, category, or search pages
+ * @param {*} param0 individual product
+ * @returns 
+ */
 const Product = ({ product }) => {
   const navigate = useNavigate();
 

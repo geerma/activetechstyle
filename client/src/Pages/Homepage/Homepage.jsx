@@ -7,13 +7,19 @@ import Product from "../../Components/Product/Product";
 
 import bannerImage from "../../assets/banner.jpg";
 
-
-
+/**
+ * Homepage for the E-commerce webapp.
+ * Shows list of all products in the database.
+ * @returns 
+ */
 const Homepage = () => {
   const [products, setProducts] = useState([]);
 
   const backend_endpoint = import.meta.env.VITE_BACKEND_URL;
 
+  /**
+   * Fetch all products
+   */
   const fetchProducts = async () => {
     await fetch(`${backend_endpoint}/api/v1/product/all/`)
       .then((res) => res.json())
@@ -21,6 +27,10 @@ const Homepage = () => {
       .catch((error) => console.log(error));
   };
 
+  /**
+   * Sorts products based on price using backend SQL query
+   * @param {*} ascdesc parameter to change whether price should be ascending or descending
+   */
   const sortByPrice = async (ascdesc) => {
     await fetch(`${backend_endpoint}/api/v1/product/all/price/${ascdesc}`)
       .then((res) => res.json())

@@ -6,22 +6,35 @@ import { Header } from "../../Components/Header/Header";
 import Order from "../../Components/Order/Order";
 import "./cartpage.css";
 
+/**
+ * Page for the user's cart prior to checkout.
+ * Contains the products within the cart and billing information inputs.
+ * @returns
+ */
 const Cartpage = () => {
   const navigate = useNavigate();
   const effectRan = useRef(false);
 
+  // Cart variables
   const [cartProducts, setCartProducts] = useState([]);
-
   const [cartItems, setCartItems] = useState();
+
+  // Billing variables
   const [hasBilling, setHasBilling] = useState(false);
   const [cardNumber, setCardNumber] = useState();
   const [expiryDate, setExpiryDate] = useState();
   const [cvcNumber, setCvcNumber] = useState();
 
+  // Variables to retrieve billing information from signed-in user
   const customerId = sessionStorage.getItem("customerId");
   const [fetchedBillingId, setFetchedBillingId] = useState();
   let purchaseCartList = [];
 
+  /**
+   * On page load, useEffect will do the following:
+   * - If user is not logged in, navigate to "login" page
+   * - If user is logged in, get product ids from the sessionStorage "cartItems", then fetch their data from the API
+   */
   useEffect(() => {
     if (
       sessionStorage.getItem("customerId") == "null" ||
@@ -43,6 +56,10 @@ const Cartpage = () => {
     return () => (effectRan.current = true);
   }, []);
 
+  /**
+   * Function is called when the submit button is pressed.
+   * Handles checks for if there are no items in the cart, and if billing info is empty
+   */
   const handlePurchase = () => {
     if (cartItems == undefined) {
       window.alert("Please add items to cart");
@@ -65,6 +82,9 @@ const Cartpage = () => {
     }
   };
 
+  /**
+   * Function is called when the delete billing information is pressed
+   */
   const handleDelete = () => {
     deleteBilling();
     window.alert("Billing has been deleted");
@@ -74,6 +94,10 @@ const Cartpage = () => {
 
   const backend_endpoint = import.meta.env.VITE_BACKEND_URL;
 
+  /**
+   * Fetches a product from the given itemId parameter, and pushes it to the cartProducts variable
+   * @param {*} itemId 
+   */
   const fetchProducts = async (itemId) => {
     await fetch(`${backend_endpoint}/api/v1/product/byId/${itemId}`)
       .then((res) => res.json())
@@ -81,6 +105,10 @@ const Cartpage = () => {
       .catch((error) => console.log(error));
   };
 
+  /**
+   * Function to purchase cart items and send it to be database
+   * @param {*} purchaseCartList 
+   */
   const purchase = async (purchaseCartList) => {
     await fetch(`${backend_endpoint}/api/v1/cart/customer/${customerId}`, {
       method: "POST",
@@ -94,6 +122,9 @@ const Cartpage = () => {
       .catch((error) => window.alert(error));
   };
 
+  /**
+   * Adds new billing and attaches it to the customer
+   */
   const addNewBilling = async () => {
     await fetch(`${backend_endpoint}/api/v1/billing/`, {
       method: "POST",
@@ -112,6 +143,10 @@ const Cartpage = () => {
       .catch((error) => window.alert(error));
   };
 
+  /**
+   * Attaches the billing to the customer
+   * @param {*} billingId 
+   */
   const attachBillingToCustomer = async (billingId) => {
     await fetch(
       `${backend_endpoint}/api/v1/billing/${billingId}/customer/${customerId}`,
@@ -125,6 +160,9 @@ const Cartpage = () => {
       .catch((error) => console.log(error));
   };
 
+  /**
+   * Fetches billing information based on the customerId
+   */
   const fetchBilling = async () => {
     await fetch(`${backend_endpoint}/api/v1/customer/byId/${customerId}`)
       .then((res) => res.json())
@@ -141,6 +179,9 @@ const Cartpage = () => {
       .catch((error) => console.log(error));
   };
 
+  /**
+   * Delete billing from the customer
+   */
   const deleteBilling = async () => {
     await fetch(
       `${backend_endpoint}/api/v1/billing/delete/${fetchedBillingId}`,
@@ -151,6 +192,10 @@ const Cartpage = () => {
     ).catch((error) => console.log(error));
   };
 
+  /**
+   * Navigates to the product page after purchase is made
+   * @param {*} itemId 
+   */
   const navigateToProductPage = (itemId) => {
     navigate(`/product/${itemId}`);
   };

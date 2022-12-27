@@ -1,6 +1,10 @@
 import React from "react";
 import "./footer.css";
 
+/**
+ * Footer containing company and copyright information
+ * @returns Footer div
+ */
 export const Footer = () => {
   return (
     <div>

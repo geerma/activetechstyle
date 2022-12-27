@@ -4,11 +4,18 @@ import { Header } from "../../Components/Header/Header";
 import Product from "../../Components/Product/Product";
 import "./activepage.css";
 
+/**
+ * Page containing products in the "active" category
+ * @returns 
+ */
 const Activepage = () => {
   const [products, setProducts] = useState([]);
 
   const backend_endpoint = import.meta.env.VITE_BACKEND_URL;
 
+  /**
+   * Fetches all products in the active category from the API endpoint
+   */
   const fetchProducts = async () => {
     await fetch(`${backend_endpoint}/api/v1/product/byCategory/active/`)
       .then((res) => res.json())

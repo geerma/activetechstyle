@@ -4,6 +4,10 @@ import { Footer } from "../../Components/Footer/Footer";
 import { Header } from "../../Components/Header/Header";
 import "./loginpage.css";
 
+/**
+ * Login and registration page.
+ * @returns 
+ */
 const Loginpage = () => {
   const [isRegistering, setIsRegistering] = useState(false);
 
@@ -19,6 +23,9 @@ const Loginpage = () => {
 
   const backend_endpoint = import.meta.env.VITE_BACKEND_URL;
 
+  /**
+   * Logs the user in
+   */
   const login = async () => {
     await fetch(
       `${backend_endpoint}/api/v1/customer/login/?email=${email}&password=${password}`
@@ -28,6 +35,10 @@ const Loginpage = () => {
       .catch(() => window.alert("Incorrect Username or Password"));
   };
 
+  /**
+   * Function to verify the login after receiving response
+   * @param {*} response response from the backend server
+   */
   const verifyLogin = (response) => {
     if (response != null) {
       if (response.id == undefined) {
@@ -51,6 +62,9 @@ const Loginpage = () => {
     }),
   };
 
+  /**
+   * Register a user
+   */
   const register = async () => {
     await fetch(`${backend_endpoint}/api/v1/customer/`, registerRequestOptions)
       .then((res) => res.json())
@@ -58,6 +72,10 @@ const Loginpage = () => {
       .catch((error) => window.alert(error));
   };
 
+  /**
+   * Function to verify the registration after receiving response
+   * @param {*} response response from the backend server
+   */
   const verifyRegister = (response) => {
     if (response.id != undefined) {
       window.alert("You have successfully registered.");
@@ -68,6 +86,9 @@ const Loginpage = () => {
     } 
   }
 
+  /**
+   * Function is called when login button is clicked
+   */
   const loginSubmit = () => {
     if (email != undefined && password != undefined) {
       login();
@@ -76,6 +97,9 @@ const Loginpage = () => {
     }
   };
 
+  /**
+   * Function is called when register button is clicked
+   */
   const registerSubmit = () => {
     if (
       registerName == undefined ||

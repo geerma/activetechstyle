@@ -10,6 +10,10 @@ import Searchpage from "./Pages/Searchpage/Searchpage";
 import Cartpage from "./Pages/Cartpage/Cartpage";
 import Orderhistorypage from "./Pages/Orderhistorypage/Orderhistorypage";
 
+/**
+ * App containing all routes
+ * @returns React Router
+ */
 function App() {
   return (
     <Routes>

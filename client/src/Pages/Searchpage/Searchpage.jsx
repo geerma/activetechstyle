@@ -5,13 +5,20 @@ import { Header } from "../../Components/Header/Header";
 import Product from "../../Components/Product/Product";
 import "./searchpage.css";
 
+/**
+ * Search page containing products fulfilling a search criteria
+ * @returns 
+ */
 const Searchpage = () => {
-  const params = useParams();
+  const params = useParams(); // Params from the dynamic URL
 
   const [products, setProducts] = useState([]);
 
   const backend_endpoint = import.meta.env.VITE_BACKEND_URL;
 
+  /**
+   * Fetch products basd on params.query
+   */
   const fetchSearchProducts = async () => {
     await fetch(`${backend_endpoint}/api/v1/product/byName/${params.query}`)
       .then((res) => res.json())

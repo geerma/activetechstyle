@@ -4,11 +4,18 @@ import { Header } from "../../Components/Header/Header";
 import Product from "../../Components/Product/Product";
 import "./stylepage.css";
 
+/**
+ * Page containing products in the "style" category
+ * @returns 
+ */
 const Stylepage = () => {
   const [products, setProducts] = useState([]);
 
   const backend_endpoint = import.meta.env.VITE_BACKEND_URL;
 
+  /**
+   * Fetches all products in the style category from the API endpoint
+   */
   const fetchProducts = async () => {
     await fetch(`${backend_endpoint}/api/v1/product/byCategory/style/`)
       .then((res) => res.json())

@@ -2,11 +2,19 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./order.css";
 
+/**
+ * Component for each individual order history
+ * @param {*} param0 each order
+ * @returns div containing a list of products for one order
+ */
 const Order = ({ order }) => {
-  const products = order.products;
-
   const navigate = useNavigate();
+  const products = order.products; // All products from the order
 
+  /**
+   * Navigate to the product when the image is clicked on
+   * @param {*} itemId itemId of the product
+   */
   const navigateToProductPage = (itemId) => {
     navigate(`/product/${itemId}`);
   };
