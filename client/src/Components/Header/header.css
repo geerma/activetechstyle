@@ -86,3 +86,42 @@
 .header_login img {
   cursor: pointer;  
 } 
+
+@media screen and (max-width: 500px) {
+  .header_container {
+    padding-left: 5px;
+    padding-bottom: 5px;
+  }
+
+  .header_logo {
+    margin-right: 0;
+  }
+
+  .header_logo > a > img {
+    width: 66px;
+    height: 20px;
+  }
+
+  .header_category > input {
+    margin-left: 5px;
+    width: 35px;
+  }
+
+  .header_category button {
+    padding: 0.2rem 0.5rem;
+    font-size: 10px;
+    line-height: 14px;
+  }
+
+  .header_login {
+    margin-left: 0;
+    padding-left: 0;
+    margin-right: 10rem;
+  }
+
+  .header_login button {
+    margin: 0.1rem 0.1rem;
+    padding: 0.2rem 0.2rem;
+    font-size: 10px;
+  }
+}

@@ -78,14 +78,24 @@
   .image > img {
     width: 992px;
   }
-
-  .product_container {
-    background: #ffffff;
-  }
 }
 
 @media screen and (max-width: 680px) {
   .image > img {
     width: 680px;
+  }
+  
+  .homepage_container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
+
+  .product_container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    min-width: 400px;
   }
 }

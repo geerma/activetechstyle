@@ -40,7 +40,7 @@ const Searchpage = () => {
     <div className="searchpage_container">
       <Header />
       <h1>Search</h1>
-      <div className="product_container">
+      <div className="searchproduct_container">
         <div className="product_box">
           {products && products.length != 0 ? (
             products.map((product, index) => (
